@@ -166,7 +166,7 @@
 						if(mysqli_num_rows($query) > 0) {
 							while($row = mysqli_fetch_assoc($query)){
 								echo '<div class="col-12 col-md-4"><img src="data:image/jpeg;base64,'.base64_encode( $row['product_img'] ).'"style=width:100%;/>';
-								echo '<a href="#" class="product-container">'.$row['product_name'].'</a>';
+								echo '<a href="product.php" class="product-container">'.$row['product_name'].'</a>';
 								echo '<p class="product-container">RM '.$row['product_price'].'</p></div>';
 							}
 						}?>
