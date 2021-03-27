@@ -17,7 +17,7 @@
 	  		$("#footer").load("footer.html"); 
 		});
 	</script> 
-	<link rel="shortcut icon" href="capsules.svg"/>
+	<link rel="shortcut icon" href="icon/capsules.svg"/>
 </head>
 <body>
 
@@ -76,53 +76,107 @@
 					}
 				</script>    
 	        </div>
+	        <!---------- Login Form ------------>
 	        <div class="col-12 col-md-4">
-	            <p>login/register form here</p>
+	            <?php
+			    require('include/config.php');
+			    session_start();
+			    // When form submitted, check and create user session.
+			    if (isset($_POST['username'])) {
+			        $username = stripslashes($_REQUEST['username']);    // removes backslashes
+			        $username = mysqli_real_escape_string($sql, $username);
+			        $password = stripslashes($_REQUEST['password']);
+			        $password = mysqli_real_escape_string($sql, $password);
+			        // Check user is exist in the database
+			        $query    = "SELECT * FROM `user` WHERE username='$username'
+			                     AND password='$password'";
+			        $result = mysqli_query($sql, $query) or die(mysql_error());
+			        $rows = mysqli_num_rows($result);
+			        if ($rows == 1) {
+			            $_SESSION['username'] = $username;
+			            // Redirect to user dashboard page
+			            echo "<div class='form'>
+			        			<br><br>
+			        			<h3>Hi, <strong>".$username."</strong><br><br>
+			                 	<h3>You have Successfully Logged In</h3>
+			                 	<p class='link'><a href='logout.php'>Logout</h3></p>
+			                  </div>";
+			        } else {
+			            echo "<div class='form'>
+			                  <h3>Incorrect Username/password.</h3><br/>
+			                  <p class='link'>Click here to <a href='index.php'>Login</a> again.</p>
+			                  </div>";
+			        }
+			    } else {
+				?>
+				    <form class="form" method="post" name="login">
+				        <h1 class="login-title">Login</h1>
+				        <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
+				        <input type="password" class="login-input" name="password" placeholder="Password"/>
+				        <input type="submit" value="Login" name="submit" class="login-button"/>
+				        <p class="link"><a href="registration.php">New Registration</a></p>
+				  </form>
+				<?php
+    				}
+    			?>
 	        </div>
+	        <!---------- Login Form ------------>
 	    </div>
 	</div>
 
 
 	<div class="category">
 		<p class="title">Shop By Category</p>
-		<br>
+		<hr class="separator">
 		<div class="scrollmenu">
 			<?php
 			$query = mysqli_query($sql, "SELECT * FROM category");
-			while($row = mysqli_fetch_assoc($query)){
-				$category_name = $row["category_name"];
+			if(mysqli_num_rows($query) > 0) {
+				while($row = mysqli_fetch_assoc($query)){
+					echo '<button class="categoryBtn">'.$row['category_name'].'</button>';
+				}
 			}?>
-			
-			<button class="categoryBtn"><?php echo $category_name; ?></button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
 		</div>
 	</div>
 
 	<div class="category">
 		<p class="title">Shop By Condition</p>
-		<br>
+		<hr class="separator">
 		<div class="scrollmenu">
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
-			<button class="categoryBtn">Testing</button>
+			<?php
+			$query = mysqli_query($sql, "SELECT * FROM health_condition");
+			if(mysqli_num_rows($query) > 0) {
+				while($row = mysqli_fetch_assoc($query)){
+					echo '<button class="categoryBtn">'.$row['condition_name'].'</button>';
+				}
+			}?>
 		</div>
 	</div>
-				
+	
+
+	<div class="category">
+		<p class="title">Our Products</p>
+		<hr class="separator">	
+
+		<div class="product-container">
+			<div class="container">
+				<div class="row">
+					<?php
+						$query = mysqli_query($sql, "SELECT * FROM product");
+						if(mysqli_num_rows($query) > 0) {
+							while($row = mysqli_fetch_assoc($query)){
+								echo '<div class="col-12 col-md-4"><img src="data:image/jpeg;base64,'.base64_encode( $row['product_img'] ).'"style=width:100%;/>';
+								echo '<a href="#" class="product-container">'.$row['product_name'].'</a>';
+								echo '<p class="product-container">RM '.$row['product_price'].'</p></div>';
+							}
+						}?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
 	    <br>
 	    <br>
 	    <br>
