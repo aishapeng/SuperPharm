@@ -1,24 +1,8 @@
 <!DOCTYPE html>
 <?php include('include/config.php'); ?>
 <html lang="en">
-<head>
-	<meta charset="UTF-8"/>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
-	<title>SuperPharm</title>
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.6.3/css/all.css' integrity='sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/' crossorigin='anonymous'>
-	<link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script> 
-		$(function(){
-	  		$("#header").load("header.html"); 
-	  		$("#footer").load("footer.html"); 
-		});
-	</script> 
-	<link rel="shortcut icon" href="icon/capsules.svg"/>
-</head>
+<?php include('head.php'); ?>
+
 <body>
 
 	<!------- Header ------->
@@ -31,13 +15,13 @@
 			<div class="col-12 col-md-8">
 				<div class="slideshow-container">
 					<div class="adSlides">
-					 	<img src="banner1.jpeg" style="width:100%">
+					 	<img src="media_used/banner1.jpeg" style="width:100%">
 					</div>
 					<div class="adSlides">
-					 	<img src="banner2.jpeg" style="width:100%">
+					 	<img src="media_used/banner2.jpeg" style="width:100%">
 					</div>
 					<div class="adSlides">
-					 	<img src="banner3.jpeg" style="width:100%">
+					 	<img src="media_used/banner3.jpeg" style="width:100%">
 					</div>
 				</div>
 				<div style="text-align:center">
@@ -165,7 +149,7 @@
 						$query = mysqli_query($sql, "SELECT * FROM product");
 						if(mysqli_num_rows($query) > 0) {
 							while($row = mysqli_fetch_assoc($query)){
-								echo '<div class="col-12 col-md-4"><img src="data:image/jpeg;base64,'.base64_encode( $row['product_img'] ).'"style=width:100%;/>';
+								echo '<div class="col-12 col-md-4"><a href="product.php"><img src="data:image/jpeg;base64,'.base64_encode( $row['product_img'] ).'"style=width:100%;/></a>';
 								echo '<a href="product.php" class="product-container">'.$row['product_name'].'</a>';
 								echo '<p class="product-container">RM '.$row['product_price'].'</p></div>';
 							}
@@ -208,7 +192,7 @@
 	<!------- Content ------->
 
 	<!------- Footer ------->
-	<div id="footer"></div>
+	<?php include('footer.php'); ?>
 	<!------- Footer ------->
 
 </body>
