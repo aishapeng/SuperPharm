@@ -60,11 +60,15 @@ a:hover{
 form.search input[type=text] {
   padding: 10px;
   border: 1px solid #2c9189;
+  border-radius: 5px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
   float: left;
   width: 70%;
   background: #fff;
-  height: 50px;
-  margin-top: 2px;
+  height: 40px;
+  margin-top: 7px;
+  font-size: 17px;
 }
 
 form.search button {
@@ -72,11 +76,15 @@ form.search button {
   padding: 10px;
   background: #3cbaa1;
   color: white;
+  font-size: 17px;
   border: 1px solid #2c9189;
   border-left: none;
+  border-radius: 5px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
   cursor: pointer;
-  height: 50px;
-  margin-top: 2px;
+  height: 40px;
+  margin-top: 7px;
 }
 
 form.search button:hover {
@@ -428,6 +436,7 @@ h3 {
 }
 
 .product-container {
+  font-size: 17px;
   margin-bottom: 20px;
 }
 
@@ -615,7 +624,7 @@ ul.breadcrumb li a:hover {
   padding: 10px;
 }
 
-p, ol, ul {
+ol, ul {
   margin-bottom: 1.25rem;
   margin-top: 0;
 }
@@ -623,4 +632,36 @@ p, ol, ul {
 ol, ul {
   padding: 0;
   margin-left: 1.25rem;
+}
+
+p.b {
+  font-weight: bold;
+}
+
+p.out-of-stock {
+  color: #fc5603;
+  font-size: 20px;
+  border: 1px solid;
+  border-radius: 3px;
+  text-align: center;
+}
+
+p.in-stock {
+  color: #3cbaa1;
+  font-size: 20px;
+  border: 1px solid;
+  border-radius: 3px;
+  text-align: center;
+}
+
+p.price {
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 0px;
+}
+
+p.align-right {
+  text-align: right;
+  margin-bottom: 0px;
 }

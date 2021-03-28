@@ -147,11 +147,17 @@
 				<div class="row">
 					<?php
 						$query = mysqli_query($sql, "SELECT * FROM product");
+
 						if(mysqli_num_rows($query) > 0) {
 							while($row = mysqli_fetch_assoc($query)){
-								echo '<div class="col-12 col-md-4"><a href="product.php"><img src="data:image/jpeg;base64,'.base64_encode( $row['product_img'] ).'"style=width:100%;/></a>';
-								echo '<a href="product.php" class="product-container">'.$row['product_name'].'</a>';
-								echo '<p class="product-container">RM '.$row['product_price'].'</p></div>';
+								$product_id = $row['product_id'];
+								$product_name = $row['product_name'];
+								$product_img = $row['product_img'];
+								$product_price = $row['product_price'];
+
+								echo '<div class="col-12 col-md-4"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'"style=width:100%;/></a>';
+								echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank" class="product-container">'.$product_name.'</a>';
+								echo '<p class="product-container">RM '.$product_price.'</p></div>';
 							}
 						}?>
 				</div>
