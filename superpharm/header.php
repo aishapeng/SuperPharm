@@ -11,10 +11,9 @@ include('auth_session.php');
 	  			<!-- <button class="button">My Account</button>-->
 	  			<?php 
 				$query = mysqli_query($sql, "SELECT * FROM user");
-
-					while($row = mysqli_fetch_assoc($query)){
-						$user_id = $row['user_id'];
-					}
+				while($row = mysqli_fetch_assoc($query)){
+					$user_id = $row['user_id'];
+				}
 	  			if(!isset($_SESSION["username"])){
 	  			 	echo '<div class="dropdown">
 	  				<button class="dropbtn">My Account</button>

@@ -737,19 +737,16 @@ p.align-right {
 @media (max-width: 375px) {
   .tabordion {
     width: 100%;
-  }
-  
+  } 
   .tabordion section label {
     font-size: 12px;
     width: 100px;
   }  
-
  .tabordion section article {
     left: 100px;
     min-width: 140px;
     font-size: 12px;
   } 
-  
   .tabordion section article:after {
     background-color: #fff;
     bottom: 0;
@@ -759,28 +756,163 @@ p.align-right {
     position: absolute;
     top: 0;
     width: 200px;
-
   }  
-  
 }
 
 @media (max-width: 768px) {
   h1 {
     width: 96%;
   }
-
   .tabordion {
     width: 96%;
   }
 }
 
-
 @media (min-width: 1366px) {
   h1 {
     width: 70%;
   }
-
   .tabordion {
     width: 70%;
   }
+}
+
+/* -- quantity box -- */
+.quantity {display: inline-block;}
+
+.quantity .input-text.qty {
+  width: 35px;
+  height: 40px;
+  padding: 0 5px;
+  text-align: center;
+  background-color: transparent;
+  border: 2px solid #efefef;
+}
+
+.quantity.buttons_added {
+  text-align: left;
+  position: relative;
+  white-space: nowrap;
+  vertical-align: top;
+}
+
+.quantity.buttons_added input {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  box-shadow: none;
+}
+
+.quantity.buttons_added .minus,
+.quantity.buttons_added .plus {
+  padding: 7px 10px 8px;
+  height: 40px;
+  width: 30px;
+  background-color: #3cbaa1;
+  border: none;
+  border-radius: .25em;
+  cursor:pointer;
+}
+
+.quantity.buttons_added .minus {border-right: 0;}
+
+.quantity.buttons_added .plus {border-left: 0;}
+
+.quantity.buttons_added .minus:hover,
+.quantity.buttons_added .plus:hover {
+  background: #2c9189; 
+}
+
+.quantity input::-webkit-outer-spin-button,
+.quantity input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 0; 
+}
+ 
+.quantity.buttons_added .minus:focus,
+.quantity.buttons_added .plus:focus {
+  outline: none; 
+}
+
+.wishlist {
+  font-size: 17px;
+}
+
+.wishlist:hover {
+  color: #e30000;
+}
+
+/* product details page tabs */
+.tabset > input[type="radio"] {
+  position: absolute;
+  left: -200vw;
+}
+
+.tabset .tab-panel {
+  display: none;
+}
+
+.tabset > input:first-child:checked ~ .tab-panels > .tab-panel:first-child,
+.tabset > input:nth-child(3):checked ~ .tab-panels > .tab-panel:nth-child(2),
+.tabset > input:nth-child(5):checked ~ .tab-panels > .tab-panel:nth-child(3),
+.tabset > input:nth-child(7):checked ~ .tab-panels > .tab-panel:nth-child(4),
+.tabset > input:nth-child(9):checked ~ .tab-panels > .tab-panel:nth-child(5),
+.tabset > input:nth-child(11):checked ~ .tab-panels > .tab-panel:nth-child(6) {
+  display: block;
+}
+
+.tabset > label {
+  position: relative;
+  display: inline-block;
+  padding: 15px 15px 25px;
+  border: 1px solid transparent;
+  border-bottom: 0;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.tabset > label::after {
+  content: "";
+  position: absolute;
+  left: 15px;
+  bottom: 10px;
+  width: 22px;
+  height: 4px;
+  background: #8d8d8d;
+}
+
+.tabset > label:hover,
+.tabset > input:focus + label {
+  color: #2c9189;
+}
+
+.tabset > label:hover::after,
+.tabset > input:focus + label::after,
+.tabset > input:checked + label::after {
+  background: #3cbaa1;
+}
+
+.tabset > input:checked + label {
+  border-color: #ccc;
+  border-bottom: 1px solid #fff;
+  margin-bottom: -1px;
+}
+
+.tab-panel {
+  padding: 30px 0;
+  border-top: 1px solid #ccc;
+}
+
+/*
+ Demo purposes only
+*/
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.tabset {
+  max-width: 65em;
 }
