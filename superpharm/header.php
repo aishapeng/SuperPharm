@@ -1,20 +1,38 @@
-<?php include('include/config.php'); ?>
+<?php 
+require('include/config.php'); 
+include('auth_session.php');
+?>
 <div class="header">
 	<div class="container" style="margin:0px; max-width: 1500px;">
 		<div class="row">
 			<div class="col-auto me-auto">
 	  			<a href="index.php"><img src="icon/logo.png" class="logo" alt="SuperPharm"></a></div>
 	  		<div class="col-auto">
-	  			<div class="dropdown">
-				  	<button class="dropbtn">My Account</button>
-				  	<div class="dropdown-content">
-				    	<a href="#">Profile</a>
-				    	<a href="#">Setting</a>
-				 	</div>
+	  			<!-- <button class="button">My Account</button>-->
+	  			<?php 
+				$query = mysqli_query($sql, "SELECT * FROM user");
+
+					while($row = mysqli_fetch_assoc($query)){
+						$user_id = $row['user_id'];
+					}
+	  			if(!isset($_SESSION["username"])){
+	  			 	echo '<div class="dropdown">
+	  				<button class="dropbtn">My Account</button>
+	  				<div class="dropdown-content">
+	  					<a href="account.php">Login</a>
+	  				</div>';
+	  			} else {
+					echo '<div class="dropdown">
+	  				<button class="dropbtn">My Account</button>
+	  				<div class="dropdown-content">
+	  					<a href="account.php?uid='.$user_id.'" target="_blank">Profile</a>
+	  					<a href="logout.php">Logout</a>
+	  				</div>';
+	  			}?>
 				</div>
+	  		</div>
 	  	</div>
-	  </div>
-</div>
+	</div>
 
 <!------------ Not responvise gor --------------->
 <!------- Navigation Bar ------->
@@ -40,10 +58,10 @@
 <div id="navbar">
 	<a id="main" class="caregoryBtn" href="javascript:openNav()">☰ Categories</a>
 	<form class="search" action="" style="float: left; width: 50%">
-		<input type="text" placeholder="Search.." name="search">
+		<input type="text" placeholder="What are you looking for" name="search">
 		<button type="submit"><i class="fa fa-search"></i></button>
 	</form>
-  	<a href="#" style="float:right;"><img src="icon/cart.svg" alt="My Cart" style="width:32px; height:25px"></a>
+  	<a href="cart.php" style="float:right;"><img src="icon/cart.svg" alt="My Cart" style="width:32px; height:25px"></a>
 </div>
 <!------- Navigation Bar ------->
 

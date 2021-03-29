@@ -22,13 +22,13 @@
             $reward_point = $row['reward_point'];
             $description = $row['description'];
             $specification = $row['specification'];
-            $product_rate = $row['product_rate'];
             $product_price = $row['product_price'];
             $availability = $row['availability'];
         }    
 	?>
 
     <p>breadcrumb here</p>
+
 <div style="margin: 50px 0px;">
     <div class="container">
         <div class="row">
@@ -84,7 +84,7 @@
                         <div class="col-6 col-md-6">
                             rating here</div>
                         <div class="col-6 col-md-6"> 
-                            rate button here</div>
+                            total rating</div>
                     </div>
                     <hr>
 

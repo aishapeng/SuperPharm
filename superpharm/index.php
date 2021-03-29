@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<?php include('include/config.php'); ?>
+<?php require('include/config.php');
+include('auth_session.php') ?>
 <html lang="en">
 <?php include('head.php'); ?>
 
 <body>
-
 	<!------- Header ------->
 	<div id="header"></div>
 	<!------- Header ------->
@@ -63,33 +63,27 @@
 	        <!---------- Login Form ------------>
 	        <div class="col-12 col-md-4">
 	            <?php
-			    require('include/config.php');
-			    session_start();
-			    // When form submitted, check and create user session.
+			    if(!isset($_SESSION["username"])) {
+
 			    if (isset($_POST['username'])) {
-			        $username = stripslashes($_REQUEST['username']);    // removes backslashes
+			        $username = stripslashes($_REQUEST['username']);
 			        $username = mysqli_real_escape_string($sql, $username);
 			        $password = stripslashes($_REQUEST['password']);
 			        $password = mysqli_real_escape_string($sql, $password);
-			        // Check user is exist in the database
+
 			        $query    = "SELECT * FROM `user` WHERE username='$username'
 			                     AND password='$password'";
 			        $result = mysqli_query($sql, $query) or die(mysql_error());
 			        $rows = mysqli_num_rows($result);
 			        if ($rows == 1) {
 			            $_SESSION['username'] = $username;
-			            // Redirect to user dashboard page
-			            echo "<div class='form'>
-			        			<br><br>
-			        			<h3>Hi, <strong>".$username."</strong><br><br>
-			                 	<h3>You have Successfully Logged In</h3>
-			                 	<p class='link'><a href='logout.php'>Logout</h3></p>
-			                  </div>";
+			            header("Refresh:0");
+
 			        } else {
-			            echo "<div class='form'>
+			            echo '<div class="form">
 			                  <h3>Incorrect Username/password.</h3><br/>
-			                  <p class='link'>Click here to <a href='index.php'>Login</a> again.</p>
-			                  </div>";
+			                  <p style="text-align: center">Click here to <a href="index.php">Login</a> again.</p>
+			                  </div>';
 			        }
 			    } else {
 				?>
@@ -98,10 +92,18 @@
 				        <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
 				        <input type="password" class="login-input" name="password" placeholder="Password"/>
 				        <input type="submit" value="Login" name="submit" class="login-button"/>
-				        <p class="link"><a href="registration.php">New Registration</a></p>
+				        <p class="link" style="text-align: center"><a href="account.php">New Registration</a></p>
 				  </form>
 				<?php
     				}
+    			}
+    			 else {
+    				echo '<div class="form">
+			        		<br><br><br><br>
+			               	<h3>You have Successfully Logged In</h3>
+			               	<p class="link" style="text-align:center;"><a href="logout.php">Logout</a></p>
+			  	          </div>';
+    			}
     			?>
 	        </div>
 	        <!---------- Login Form ------------>
@@ -156,8 +158,9 @@
 								$product_price = $row['product_price'];
 
 								echo '<div class="col-12 col-md-4"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'"style=width:100%;/></a>';
-								echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank" class="product-container">'.$product_name.'</a>';
-								echo '<p class="product-container">RM '.$product_price.'</p></div>';
+								echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank">'.$product_name.'</a>';
+								echo '<div class="row"><div class="col-12 col-md-6"><p>rating</p></div>';
+								echo '<div class="col-12 col-md-6"><p>RM '.$product_price.'</p></div></div></div>';
 							}
 						}?>
 				</div>
