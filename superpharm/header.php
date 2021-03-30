@@ -1,19 +1,19 @@
 <?php 
 require('include/config.php'); 
-include('auth_session.php');
-?>
+include('auth_session.php'); 
+
+$query = mysqli_query($sql, "SELECT * FROM user");
+while($row = mysqli_fetch_assoc($query)){
+	$user_id = $row['user_id'];
+}?>
 <div class="header">
-	<div class="container" style="margin:0px; max-width: 1500px;">
+	<div class="container header-width">
 		<div class="row">
 			<div class="col-auto me-auto">
-	  			<a href="index.php"><img src="icon/logo.png" class="logo" alt="SuperPharm"></a></div>
+	  			<a href="project.php" target="_self"><img src="icon/logo.png" alt="SuperPharm" class="logo"/></a></div>
 	  		<div class="col-auto">
 	  			<!-- <button class="button">My Account</button>-->
-	  			<?php 
-				$query = mysqli_query($sql, "SELECT * FROM user");
-				while($row = mysqli_fetch_assoc($query)){
-					$user_id = $row['user_id'];
-				}
+	  			<?php
 	  			if(!isset($_SESSION["username"])){
 	  			 	echo '<div class="dropdown">
 	  				<button class="dropbtn">My Account</button>
@@ -56,11 +56,11 @@ include('auth_session.php');
 
 <div id="navbar">
 	<a id="main" class="caregoryBtn" href="javascript:openNav()">☰ Categories</a>
-	<form class="search" action="" style="float: left; width: 50%">
+	<form class="search search-bar" action="">
 		<input type="text" placeholder="What are you looking for" name="search">
 		<button type="submit"><i class="fa fa-search"></i></button>
 	</form>
-  	<a href="cart.php" style="float:right;"><img src="icon/cart.svg" alt="My Cart" style="width:32px; height:25px"></a>
+  	<?php echo '<a href="cart.php?uid='.$user_id.'" target="_blank" class="fl-right"><img src="icon/cart.svg" alt="My Cart" class="my-cart-icon"></a>'; ?>
 </div>
 <!------- Navigation Bar ------->
 
