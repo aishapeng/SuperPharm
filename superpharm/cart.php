@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <?php 
-	require('include/config.php');
-	include('auth_session.php'); ?>
+require('include/config.php');
+include('auth_session.php'); ?>
 <html lang="en">
 <?php include('head.php'); ?>
 
@@ -9,6 +9,11 @@
 	<!------- Header ------->
 	<div id="header"></div>
 	<!------- Header ------->
+    <ul class="breadcrumb">
+        <li><a href="project.php" target="_self">Home</a></li>
+        <li><a href="" target="_self">Shopping Cart</a></li>
+    </ul>
+
 	<?php
 		if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
 		
@@ -19,7 +24,7 @@
            die(mysqli_error());
         }
 
-		    echo '<div class="container mt-50">
+		    echo '<div class="container">
 		    	<div class="row"><h1>Shopping Cart</h1></div>
 		        <div class="row">
 		    		<div class="col-12 col-md-9">	
@@ -38,7 +43,7 @@
         while($row = mysqli_fetch_assoc($query)){
             $product_id = $row['product_id'];
 
-            $shopping_cart = mysqli_query($sql, "SELECT * FROM my_cart NATURAL JOIN product WHERE product_id = $product_id");
+            $shopping_cart = mysqli_query($sql, "SELECT product_img,product_name,ROUND(product_price,2) AS rounded_price,quantity FROM my_cart NATURAL JOIN product WHERE product_id = $product_id");
 
             if($shopping_cart===NULL){
             	echo '<h1 class="center">No Item in your cart</h1>';
@@ -46,9 +51,9 @@
 	        while($row = mysqli_fetch_assoc($shopping_cart)){
 	            $product_name = $row['product_name'];
 	            $product_img = $row['product_img'];
-	            $product_price = $row['product_price'];
+	            $product_price = $row['rounded_price'];
 	            $quantity = $row['quantity'];
-
+	            $subtotal = $product_price*$quantity;
 	        } ?>
 		    		<tr>
 			            <td class="width-100">
@@ -65,7 +70,7 @@
 	           				</div>
 	            		</td>
 	            		<td>
-	            			RM <?php echo ($product_price*$quantity); ?>
+	            			RM <?php echo $subtotal; ?>
 	            		</td>
 	            		<td class="pos-absolute">
 	            			<a href="#" title="Remove" target="_self" class="bin"><i class="fa fa-trash"></i></a>
@@ -119,7 +124,7 @@
 					</div>
 					<div class="row">
 						<div class="col-12 col-md-12">
-							<button class="checkoutBtn">Checkout</button>
+							<?php echo '<a class="checkoutBtn full-width" href="checkout.php?uid='.$id.'" target="_blank">Checkout</a>'; ?>
 						</div>
 					</div>
 				</div>

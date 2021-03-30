@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<?php include('include/config.php'); ?>
+<?php 
+include('include/config.php'); 
+include('auth_session.php'); ?>
 <html lang="en">
 <?php include('head.php'); ?>
 
@@ -11,15 +13,16 @@
 
     <?php
         $id = $_GET["catid"];
-        $query = mysqli_query($sql, "SELECT * FROM product_category NATURAL JOIN category WHERE category_id = $id");
+        $categories = mysqli_query($sql, "SELECT * FROM category WHERE category_id = $id");
+        //$query = mysqli_query($sql, "SELECT * FROM product_category NATURAL JOIN category WHERE category_id = $id");
 
-        if($query === FALSE) { 
-           die(mysqli_error());
-        }
-        while($row = mysqli_fetch_assoc($query)){
+        //if($query === FALSE) { 
+        //   die(mysqli_error());
+        //}
+        while($row = mysqli_fetch_assoc($categories)){
             $category_name = $row['category_name'];
-
-    } ?>
+        } 
+    ?>
     <!------- Content ------->
     <div class="row">
         <ul class="breadcrumb">
@@ -52,7 +55,7 @@
                 <br>
                     <p class="b">Category</p>
                     <?php
-                        $query = mysqli_query($sql, "SELECT category_name FROM category");
+                        $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 0,5");
                         if(mysqli_num_rows($query) > 0) {
                             while($row = mysqli_fetch_assoc($query)){
                                 echo '<label class="checkbox-container">'.$row['category_name'].'
@@ -64,10 +67,10 @@
                 <br>
                     <p class="b">Condition</p>
                     <?php
-                        $query = mysqli_query($sql, "SELECT condition_name FROM health_condition");
+                        $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 5,13");
                         if(mysqli_num_rows($query) > 0) {
                             while($row = mysqli_fetch_assoc($query)){
-                                echo '<label class="checkbox-container">'.$row['condition_name'].'
+                                echo '<label class="checkbox-container">'.$row['category_name'].'
                                       <input type="checkbox">
                                       <span class="checkmark"></span>
                                     </label>';
@@ -80,12 +83,44 @@
                     <div class="row">
                         <h1><?php echo $category_name; ?></h1>
                     </div>
+
+                    <div class="row">
+                        <?php 
+                        $category_products = mysqli_query($sql, "SELECT product_id FROM product_category WHERE category_id = $id");
+
+                        if(mysqli_num_rows($category_products) > 0) {
+                            while($row = mysqli_fetch_assoc($category_products)){
+                                $product_id = $row['product_id'];
+                                $products_details = mysqli_query($sql, "SELECT product_img,product_name,ROUND(product_price,2) AS rounded_price FROM product NATURAL JOIN product_category WHERE product_id = $product_id AND category_id = $id");
+                                    while($row = mysqli_fetch_assoc($products_details)){
+                                        $product_img = $row['product_img'];
+                                        $product_name = $row['product_name'];
+                                        $product_price = $row['rounded_price'];
+                                    ?>
+                                        <div class="col-6 col-md-4 mt-20">
+                                            <?php echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/>'; ?></a>
+                                            <div class="row">
+                                                <div class="col-auto me-auto">
+                                                    <?php echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank"  class="product-txt">'.$product_name.'</a>'; ?>
+                                                </div>
+                                                <div class="col-auto">
+                                                    <?php echo '<p>RM '.$product_price.'</p>'; ?>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    <?php }
+
+                            }
+                        } else {
+                            echo '<h2 class="message-container mt-50">--- No product in this category ---</h2>';
+                        }?>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <!------- Content ------->
-    
+
 	<!------- Footer ------->
     <div id="footer" class="mt-50"></div>
     <!------- Footer ------->

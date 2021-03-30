@@ -116,7 +116,7 @@ include('auth_session.php') ?>
 		<hr class="separator">
 		<div class="scrollmenu">
 			<?php
-			$query = mysqli_query($sql, "SELECT * FROM category");
+			$query = mysqli_query($sql, "SELECT * FROM category LIMIT 0,5");
 			if(mysqli_num_rows($query) > 0) {
 				while($row = mysqli_fetch_assoc($query)){
 					echo '<a class="categoryHomeBtn" href="product.php?catid='.$row['category_id'].'">'.$row['category_name'].'</a>';
@@ -130,10 +130,10 @@ include('auth_session.php') ?>
 		<hr class="separator">
 		<div class="scrollmenu">
 			<?php
-			$query = mysqli_query($sql, "SELECT * FROM health_condition");
+			$query = mysqli_query($sql, "SELECT * FROM category LIMIT 5,13");
 			if(mysqli_num_rows($query) > 0) {
 				while($row = mysqli_fetch_assoc($query)){
-					echo '<a class="categoryHomeBtn">'.$row['condition_name'].'</a>';
+					echo '<a class="categoryHomeBtn" href="product.php?catid='.$row['category_id'].'">'.$row['category_name'].'</a>';
 				}
 			}?>
 		</div>
@@ -141,6 +141,7 @@ include('auth_session.php') ?>
 	
 
 	<div class="category">
+		<a id="our-product"></a>
 		<p class="title">Our Products</p>
 		<hr class="separator">	
 
@@ -148,14 +149,14 @@ include('auth_session.php') ?>
 			<div class="container">
 				<div class="row">
 					<?php
-						$query = mysqli_query($sql, "SELECT * FROM product");
+						$query = mysqli_query($sql, "SELECT product_id,product_img,product_name,ROUND(product_price,2) AS rounded_price FROM product");
 
 						if(mysqli_num_rows($query) > 0) {
 							while($row = mysqli_fetch_assoc($query)){
 								$product_id = $row['product_id'];
 								$product_name = $row['product_name'];
 								$product_img = $row['product_img'];
-								$product_price = $row['product_price'];
+								$product_price = $row['rounded_price'];
 
 								echo '<div class="col-12 col-md-4"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';
 								echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank" class="align-left">'.$product_name.'</a>';

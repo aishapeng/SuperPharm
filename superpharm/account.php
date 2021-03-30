@@ -9,10 +9,18 @@ include('auth_session.php'); ?>
     <!------- Header ------->
     <div id="header"></div>
     <!------- Header ------->
+    <ul class="breadcrumb">
+        <li><a href="project.php" target="_self">Home</a></li>
+        <li><a href="" target="_self">My Account</a></li>
+    </ul>
+    <div class="container">
+        <div class="row"><h1 class="center">Login / Sign Up</h1></div>
+    </div>
+
     <?php 
     if(!isset($_SESSION['username'])) {?>
 
-        <div class="login-register">
+        <div class="container mt-20">
             <figure class="tabBlock">
                 <ul class="tabBlock-tabs">
                     <li class="tabBlock-tab">Login</li>

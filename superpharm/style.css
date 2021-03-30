@@ -45,6 +45,15 @@ a.footer-text:hover {
   color: #000;
 }
 
+a.product-txt {
+  text-decoration: none;
+  color: #000;
+}
+
+a.product-txt:hover {
+  color: #2c9189;
+}
+
 .fl-right {
   float: right !important;
 }
@@ -63,6 +72,10 @@ a.footer-text:hover {
 
 .mb-10 {
   margin-bottom: 10px;
+}
+
+.mt-20 {
+  margin-top: 20px;
 }
 
 .mt-50 {
@@ -227,10 +240,11 @@ form.search::after {
 
 .sidebar .closebtn {
   position: absolute;
-  top: 0;
+  top: 1;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
+  z-index: 1;
 }
 
 .sidebar-line {
@@ -277,7 +291,8 @@ form.search::after {
   color: #000;
   width: 100%;
   height: 35px;
-
+  text-decoration: none;
+  padding: 5px 68px;
 }
 
 .checkoutBtn:hover {
@@ -783,8 +798,7 @@ p.align-right {
 }
 
 .account-container {
-  margin: 30px;
-  padding: 30px;
+  padding: 0 30px;
 }
 
 .tabordion {
@@ -1157,4 +1171,9 @@ p.align-right {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
+}
+
+.confirmation-container {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  padding: 40px;
 }
