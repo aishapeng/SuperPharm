@@ -54,8 +54,16 @@ a.product-txt:hover {
   color: #2c9189;
 }
 
+td.align {
+  vertical-align: top;
+}
+
 .fl-right {
   float: right !important;
+}
+
+.pr-0 {
+  padding-right: 0px;
 }
 
 .text-bold {
@@ -201,18 +209,6 @@ form.search::after {
   padding-top: 60px;
 }
 
-.button {
-  border: none;
-  padding: 14px;
-  font-size: 17px;
-  cursor: pointer;
-  background-color:#fff;
-}
-
-.button:hover{
-  color: #2c9189;
-}
-
 .sidebar {
   height: 100%;
   width: 0;
@@ -275,7 +271,7 @@ form.search::after {
   height: 35px;
   margin: 40px 0px;
   text-decoration: none;
-  padding: 10px;
+  padding: 6px 68px;
 }
 
 .backBtn:hover {
@@ -283,21 +279,20 @@ form.search::after {
   color: #000;
 }
 
-
-.checkoutBtn {
+.button {
   border-radius: .25em;
   border: none;
-  background-color: #ffd53d;
-  color: #000;
+  background-color: #e9b600;
+  color: #fff;
   width: 100%;
-  height: 35px;
+  height: 42px;
   text-decoration: none;
-  padding: 5px 68px;
+  padding: 6px 68px;
 }
 
-.checkoutBtn:hover {
-  background-color: #e9b600;
-  color: white;
+.button:hover {
+  background-color: #ffd53d;
+  color: #000;
 }
 
 #main {
@@ -523,8 +518,8 @@ h1.login-title {
   background: #3cbaa1;
   border: 0;
   outline: 0;
-  width: 100%;
-  height: 50px;
+  width: 100% !important;
+  height: 50px !important;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
@@ -897,15 +892,6 @@ p.align-right {
   }
 }
 
-@media (min-width: 1366px) {
-  h1 {
-    width: 70%;
-  }
-  .tabordion {
-    width: 70%;
-  }
-}
-
 /* -- quantity box -- */
 .quantity {display: inline-block;}
 
@@ -916,6 +902,7 @@ p.align-right {
   text-align: center;
   background-color: transparent;
   border: 2px solid #efefef;
+  border-radius: .25em;
 }
 
 .quantity.buttons_added {
@@ -965,16 +952,17 @@ p.align-right {
 }
 
 .wishlist {
-  font-size: 17px;
+  color: #000;
+  font-size: 24px;
 }
 
 .wishlist:hover {
   color: #e30000;
+  font-size: 26px;
 }
 
 /* product details page tabs */
 .tabset {
-  max-width: 65em;
   min-height: 25em;
   max-height: 50em;
 }
@@ -1176,4 +1164,34 @@ p.align-right {
 .confirmation-container {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   padding: 40px;
+}
+
+.subtotal-container {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  padding: 20px;
+}
+
+input[type=submit] {
+  border: none;
+  height: 32px;
+  width: 32px;
+}
+
+input[type=submit]:hover {
+  width: 34px;
+  height: 34px;
+}
+
+input[type=submit].add {
+  background: url(icon/add-to-cart.svg);
+}
+
+input[type=submit].remove {
+  background: url(icon/bin.svg);
+}
+
+.placeorder-container {
+  min-height: 350px;
+  padding: 60px;
+  text-align: center;
 }

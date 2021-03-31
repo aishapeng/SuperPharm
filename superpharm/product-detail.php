@@ -123,29 +123,28 @@ include('auth_session.php'); ?>
                         </div>
                         <hr>
 
-                        <div class="row">
-                            <form method="post" action="">
-                                <input type="hidden" name="user_id" value=<?php echo '"'.$user_id.'"'; ?>>
-                                <input type="hidden" name="product_id" value=<?php echo '"'.$id.'"'; ?>>
-                            <div class="col-4 col-md-6" class="align-end">
-                                <div class="quantity buttons_added">
-                                    <input type="button" value="-" class="minus">
-                                    <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
-                                    <input type="button" value="+" class="plus">
+                        <form method="post" action="">
+                            <input type="hidden" name="user_id" value=<?php echo '"'.$user_id.'"'; ?>>
+                            <input type="hidden" name="product_id" value=<?php echo '"'.$id.'"'; ?>>
+                            
+                            <div class="row">    
+                                <div class="col-4 col-md-8 align-end">
+                                    <div class="quantity buttons_added">
+                                        <input type="button" value="-" class="minus">
+                                        <input type="number" step="1" min="1" max="" name="quantity" value="1" title="Qty" class="input-text qty text" size="4" pattern="" inputmode="">
+                                        <input type="button" value="+" class="plus">
+                                    </div>
+                                </div>
+                                <div class="col-4 col-md-2 align-end">
+                                    <?php 
+                                    if($availability==1){ echo '<input type="submit" name="save" value="" class="add">';
+                                    }?>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <a class="wishlist" href="" target="_self" title="Add To Wishlist"><i class="fa fa-heart"></i></a>
                                 </div>
                             </div>
-                            <div class="col-4 col-md-3 align-end">
-                                <?php 
-                                if($availability==1){ echo'<input type="submit" value="Add to cart" name="save">
-
-                                <a class="btn" href="" target="_self" title="Add To Cart"><img src="icon/add-to-cart.svg" alt="Add to Cart" class="cart"/></a>';
-                                }?>
-                            </div>
-                            <div class="col-4 col-md-3 align-end">
-                                <a class="btn wishlist" href="" target="_self" title="Add To Wishlist"><i class="fa fa-heart"></i></a>
-                            </div>
                         </form>
-                        </div>
                     </div>
                 </div>
             </div>

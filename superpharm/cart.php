@@ -19,10 +19,26 @@ include('auth_session.php'); ?>
 		if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
 		
         $id = $_GET["uid"];
-
         $query = mysqli_query($sql, "SELECT * FROM my_cart WHERE user_id = $id");
         if($query === FALSE) { 
            die(mysqli_error());
+        }
+
+        $users = mysqli_query($sql, "SELECT user_id FROM user");
+        while($row = mysqli_fetch_assoc($users)){
+            $user_id = $row['user_id'];
+        }
+        
+        if(isset($_POST['delete'])){ 
+            $product_id = $_POST['product_id'];
+
+            $cart = "DELETE FROM my_cart WHERE product_id = $product_id AND user_id = $id";
+            if (mysqli_query($sql, $cart)) {
+                header("Refresh:0");
+            } else {
+                echo "Error: " . $cart . " " . mysqli_error($sql);
+             }
+             mysqli_close($sql);
         }
 
 		    echo '<div class="container">
@@ -72,8 +88,12 @@ include('auth_session.php'); ?>
 	            		<td>
 	            			RM <?php echo $subtotal; ?>
 	            		</td>
-	            		<td class="pos-absolute">
-	            			<a href="#" title="Remove" target="_self" class="bin"><i class="fa fa-trash"></i></a>
+	            		<td class="align">
+
+	            			<form method="post" action="">
+	            				<input type="hidden" name="product_id" value=<?php echo '"'.$product_id.'"'; ?>>
+	            				<input type="submit" name="delete" value="" class="remove">
+	            			</form>
 	            		</td>
 		        	</tr>
 		        <?php }
@@ -127,18 +147,18 @@ include('auth_session.php'); ?>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 col-md-12">
-							<?php echo '<a class="checkoutBtn full-width" href="checkout.php?uid='.$id.'" target="_blank">Checkout</a>'; ?>
+						<div class="col-12 col-md-12 center">
+							<?php echo '<a class="button" href="checkout.php?uid='.$id.'" target="_blank">Checkout</a>'; ?>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-			<div class="row">
-				<div class="col-6 col-md-3">
-					<a href="project.php" class="backBtn"><i class="fa fa-angle-double-left"></i> Continue Shopping</a>
-				</div>
-			</div>	
+		<div class="row">
+			<div class="col-6 col-md-4">
+				<a href="project.php" class="backBtn"><i class="fa fa-angle-double-left"></i> Continue Shopping</a>
+			</div>
+		</div>	
 	</div>
 	<?php 
 		} else {
