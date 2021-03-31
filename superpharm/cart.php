@@ -9,6 +9,7 @@ include('auth_session.php'); ?>
 	<!------- Header ------->
 	<div id="header"></div>
 	<!------- Header ------->
+	
     <ul class="breadcrumb">
         <li><a href="project.php" target="_self">Home</a></li>
         <li><a href="" target="_self">Shopping Cart</a></li>
@@ -40,21 +41,20 @@ include('auth_session.php'); ?>
 						    </thead>
 						    <tbody>';
 
+        if(mysqli_num_rows($query) > 0) {
         while($row = mysqli_fetch_assoc($query)){
             $product_id = $row['product_id'];
 
             $shopping_cart = mysqli_query($sql, "SELECT product_img,product_name,ROUND(product_price,2) AS rounded_price,quantity FROM my_cart NATURAL JOIN product WHERE product_id = $product_id");
 
-            if($shopping_cart===NULL){
-            	echo '<h1 class="center">No Item in your cart</h1>';
-            }
-	        while($row = mysqli_fetch_assoc($shopping_cart)){
-	            $product_name = $row['product_name'];
-	            $product_img = $row['product_img'];
-	            $product_price = $row['rounded_price'];
-	            $quantity = $row['quantity'];
-	            $subtotal = $product_price*$quantity;
-	        } ?>
+
+		        while($row = mysqli_fetch_assoc($shopping_cart)){
+		            $product_name = $row['product_name'];
+		            $product_img = $row['product_img'];
+		            $product_price = $row['rounded_price'];
+		            $quantity = $row['quantity'];
+		            $subtotal = $product_price*$quantity;
+		        } ?>
 		    		<tr>
 			            <td class="width-100">
 			            	<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="thumbnail"/>'; ?>
@@ -76,7 +76,11 @@ include('auth_session.php'); ?>
 	            			<a href="#" title="Remove" target="_self" class="bin"><i class="fa fa-trash"></i></a>
 	            		</td>
 		        	</tr>
-		        <?php } ?>
+		        <?php }
+				} else {
+					echo '<td>There is nothing in your shopping cart. <a href="project.php#our-product" target="_blank">Shop now!</a></td>';
+				
+		        }?>
 			    	</tbody>
 				</table>
 			</div>
@@ -137,8 +141,7 @@ include('auth_session.php'); ?>
 			</div>	
 	</div>
 	<?php 
-		
-		}else {
+		} else {
 				echo '<div class="message-container"><h1>Please <a href="account.php">log in</a> first.</h1></div>';
 			} ?>
 

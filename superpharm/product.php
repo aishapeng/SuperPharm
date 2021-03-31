@@ -14,14 +14,9 @@ include('auth_session.php'); ?>
     <?php
         $id = $_GET["catid"];
         $categories = mysqli_query($sql, "SELECT * FROM category WHERE category_id = $id");
-        //$query = mysqli_query($sql, "SELECT * FROM product_category NATURAL JOIN category WHERE category_id = $id");
-
-        //if($query === FALSE) { 
-        //   die(mysqli_error());
-        //}
-        while($row = mysqli_fetch_assoc($categories)){
-            $category_name = $row['category_name'];
-        } 
+            while($row = mysqli_fetch_assoc($categories)){
+                $category_name = $row['category_name'];
+            } 
     ?>
     <!------- Content ------->
     <div class="row">

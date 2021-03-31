@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<?php require('include/config.php');
+<?php 
+require('include/config.php');
 include('auth_session.php') ?>
 <html lang="en">
 <?php include('head.php'); ?>
@@ -158,10 +159,17 @@ include('auth_session.php') ?>
 								$product_img = $row['product_img'];
 								$product_price = $row['rounded_price'];
 
+								if(!isset($_SESSION["username"])){
 								echo '<div class="col-12 col-md-4"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';
 								echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank" class="align-left">'.$product_name.'</a>';
 								echo '<div class="row"><div class="col-auto me-auto"><p>rating</p></div>';
 								echo '<div class="col-auto"><p>RM '.$product_price.'</p></div></div></div>';
+								} else {
+									echo '<div class="col-12 col-md-4"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';
+									echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank" class="align-left">'.$product_name.'</a>';
+									echo '<div class="row"><div class="col-auto me-auto"><p>rating</p></div>';
+									echo '<div class="col-auto"><p>RM '.$product_price.'</p></div></div></div>';
+								}
 							}
 						}?>
 				</div>

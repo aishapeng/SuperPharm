@@ -26,7 +26,27 @@ include('auth_session.php'); ?>
             $specification = $row['specification'];
             $product_price = $row['rounded_price'];
             $availability = $row['availability'];
-        }   
+        }
+
+        $users = mysqli_query($sql, "SELECT user_id FROM user");
+        while($row = mysqli_fetch_assoc($users)){
+            $user_id = $row['user_id'];
+        }
+        if(isset($_POST['save'])){ 
+            $user_id = $_POST['user_id'];  
+            $product_id = $_POST['product_id'];
+            $quantity = $_POST['quantity'];
+
+            $cart = "INSERT INTO my_cart (user_id,product_id,quantity)
+            VALUES ('$user_id','$product_id','$quantity')";
+            if (mysqli_query($sql, $cart)) {
+                echo "New record created successfully !";
+            } else {
+                echo "Error: " . $cart . " " . mysqli_error($sql);
+             }
+             mysqli_close($sql);
+        }
+
 	?>
 
     <ul class="breadcrumb">
@@ -104,6 +124,9 @@ include('auth_session.php'); ?>
                         <hr>
 
                         <div class="row">
+                            <form method="post" action="">
+                                <input type="hidden" name="user_id" value=<?php echo '"'.$user_id.'"'; ?>>
+                                <input type="hidden" name="product_id" value=<?php echo '"'.$id.'"'; ?>>
                             <div class="col-4 col-md-6" class="align-end">
                                 <div class="quantity buttons_added">
                                     <input type="button" value="-" class="minus">
@@ -113,12 +136,15 @@ include('auth_session.php'); ?>
                             </div>
                             <div class="col-4 col-md-3 align-end">
                                 <?php 
-                                if($availability==1){ echo'<a class="btn" href="" target="_self" title="Add To Cart"><img src="icon/add-to-cart.svg" alt="Add to Cart" class="cart"/></a>';
+                                if($availability==1){ echo'<input type="submit" value="Add to cart" name="save">
+
+                                <a class="btn" href="" target="_self" title="Add To Cart"><img src="icon/add-to-cart.svg" alt="Add to Cart" class="cart"/></a>';
                                 }?>
                             </div>
                             <div class="col-4 col-md-3 align-end">
                                 <a class="btn wishlist" href="" target="_self" title="Add To Wishlist"><i class="fa fa-heart"></i></a>
                             </div>
+                        </form>
                         </div>
                     </div>
                 </div>

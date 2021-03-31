@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <?php 
 require('include/config.php');
-include('auth_session.php'); 
-
-$query = mysqli_query($sql, "SELECT * FROM user");
-while($row = mysqli_fetch_assoc($query)){
-	$user_id = $row['user_id']; } ?>
+include('auth_session.php'); ?>
 <html lang="en">
 <?php include('head.php'); ?>
 
@@ -13,6 +9,18 @@ while($row = mysqli_fetch_assoc($query)){
 	<!------- Header ------->
 	<div id="header"></div>
 	<!------- Header ------->
+
+    <?php
+    $query = mysqli_query($sql, "SELECT user_id,email,address,payment_method,contact FROM user");
+        while($row = mysqli_fetch_assoc($query)){
+            $user_id = $row['user_id'];
+            $email = $row['email'];
+            $address = $row['address'];
+            $payment_method = $row['payment_method'];
+            $contact = $row['contact']; 
+        } 
+    ?>
+
     <ul class="breadcrumb">
         <li><a href="project.php" target="_self">Home</a></li>
         <li><?php 
@@ -43,14 +51,18 @@ while($row = mysqli_fetch_assoc($query)){
     				<div class="col-12 col-md-6">
     					<h4>Your Information</h4>
     					<hr>
+                        <p><?php echo $email; ?></p>
+                        <p><?php echo $contact; ?></p>
     				</div>
     				<div class="col-12 col-md-6">
     					<h4>Shipping Address</h4>
     					<hr>
+                        <p><?php echo $address; ?></p>
     				</div>
     				<div class="col-12 col-md-6">
     					<h4>Payment Method</h4>
     					<hr>
+                        <p><?php echo $payment_method; ?></p>
     				</div>
     			</div>
     		</div>

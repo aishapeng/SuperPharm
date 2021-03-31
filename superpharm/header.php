@@ -121,4 +121,57 @@ while($row = mysqli_fetch_assoc($query)){
                 e = a.attr("step");
             b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
         });
+
+    var TabBlock = {
+        s: {
+            animLen: 200
+        },
+  
+        init: function() {
+            TabBlock.bindUIActions();
+            TabBlock.hideInactive();
+        },
+      
+        bindUIActions: function() {
+            $('.tabBlock-tabs').on('click', '.tabBlock-tab', function(){
+            TabBlock.switchTab($(this));
+            });
+        },
+      
+        hideInactive: function() {
+            var $tabBlocks = $('.tabBlock');
+        
+            $tabBlocks.each(function(i) {
+            var 
+                $tabBlock = $($tabBlocks[i]),
+                $panes = $tabBlock.find('.tabBlock-pane'),
+                $activeTab = $tabBlock.find('.tabBlock-tab.is-active');
+          
+            $panes.hide();
+            $($panes[$activeTab.index()]).show();
+            });
+        },
+      
+        switchTab: function($tab) {
+            var $context = $tab.closest('.tabBlock');
+        
+            if (!$tab.hasClass('is-active')) {
+                $tab.siblings().removeClass('is-active');
+                $tab.addClass('is-active');
+       
+                TabBlock.showPane($tab.index(), $context);
+            }
+        },
+      
+        showPane: function(i, $context) {
+            var $panes = $context.find('.tabBlock-pane');
+       
+            $panes.slideUp(TabBlock.s.animLen);
+            $($panes[i]).slideDown(TabBlock.s.animLen);
+        }
+    };
+
+        $(function() {
+            TabBlock.init();
+        });
 </script>
