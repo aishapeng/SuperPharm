@@ -47,7 +47,7 @@ include('auth_session.php'); ?>
     			<h2>Order Total: -</h2>
     		</div>
     		<div class="col-auto">
-    			<a class="btn">PLACE ORDER</a>
+    			<a href="placeorder.php" target="_blank" class="button">Place Order</a>
     		</div>
     	</div>
     	<div class="row">
@@ -67,7 +67,8 @@ include('auth_session.php'); ?>
     				<div class="col-12 col-md-6">
     					<h4>Payment Method</h4>
     					<hr>
-                        <p><?php echo $payment_method; ?></p>
+                        <input type="submit" name="payment1" value="" class="payment1">
+                        <input type="submit" name="payment2" value="" class="payment2">
     				</div>
     			</div>
     		</div>

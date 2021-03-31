@@ -58,11 +58,11 @@ include('auth_session.php'); ?>
     <div class="mt-50">
         <div class="container">
             <div class="row">
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-5">
                     <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'"alt="Product Image" class="product"/>'; ?>
                 </div>
                 
-                <div class="col-12 col-md-6">
+                <div class="col-12 col-md-7">
                     <div style="padding: 0px 20px">
                         <?php echo '<p class="b">'.$product_name.'</p>'; ?>
                         <hr>
@@ -107,10 +107,14 @@ include('auth_session.php'); ?>
                         </div>
 
                         <div class="row">
-                            <div class="col-6 col-md-6">
-                                rating here</div>
-                            <div class="col-6 col-md-6"> 
-                                total rating</div>
+                            <div class="col-12 col-md-12">
+                                <span class="fa fa-star rating checked"></span>
+                                <span class="fa fa-star rating checked"></span>
+                                <span class="fa fa-star rating checked"></span>
+                                <span class="fa fa-star rating"></span>
+                                <span class="fa fa-star rating"></span>
+                                <span> (100 reviews)</span>
+                            </div>
                         </div>
                         <hr>
 
@@ -193,7 +197,105 @@ include('auth_session.php'); ?>
                                 <section id="reviews" class="tab-panel">
                                     <h2>Reviews</h2>
                                     <br>
-                                    <p>review here</p>
+                                    <div class="row rating-container">
+                                        <h5>Product Rating</h5>
+                                        <div class="col-6 col-md-4">
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star checked"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="fa fa-star"></span>
+                                            <span class="text-bold text-red">4.5/5.0 (100 reviews)</span>
+                                        </div>
+                                        <div class="col-6 col-md-8">
+                                            <div class="row">
+                                                <div class="col-6 col-md-3 rating">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span>(20)</span>
+                                                </div>
+                                                <div class="col-6 col-md-3 rating">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span>(30)</span>
+                                                </div>
+                                                <div class="col-6 col-md-3 rating">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span>(30)</span>
+                                                </div>
+                                                <div class="col-6 col-md-3 rating">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span>(10)</span>
+                                                </div>
+                                                <div class="col-6 col-md-3 rating">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span>(10)</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <hr class="mt-20">
+                                        <div class="row">
+                                            <div class="col-3 col-md-2">
+                                                <img src="media_used/user.png" class="user">
+                                            </div>
+                                            <div class="col-9 col-md-10">
+                                                <div class="row">
+                                                    <p class="b">Username</p>
+                                                </div>
+                                                <div class="rating">
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star checked"></span>
+                                                    <span class="fa fa-star"></span>
+                                                    <span>(4.0)</span>
+                                                </div>
+                                                <div class="row">
+                                                    <p>Comment here here here.</p>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-3 col-md-3">
+                                                        <img src="media_used/review1.jpg" class="review">
+                                                    </div>
+                                                    <div class="col-3 col-md-3">
+                                                        <img src="media_used/review2.jpg" class="review">
+                                                    </div>
+                                                    <div class="col-3 col-md-3">
+                                                        <img src="media_used/review3.jpg" class="review">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mt-50">
+                                            <div class="col-10 col-md-10">
+                                                <input type="text" name="review" class="full-width">
+                                            </div>
+                                            <div class="col-1 col-md-1">
+                                                <input type="submit" value="" name="sendimage" class="image">
+                                            </div>
+                                            <div class="col-1 col-md-1">
+                                                <input type="submit" value="" name="review" class="review">
+                                            </div>
+                                        </div>
+                                    </div>
                                 </section>
                             </div>
                         </div>
@@ -206,5 +308,6 @@ include('auth_session.php'); ?>
     <!------- Footer ------->
     <div id="footer" class="mt-50"></div>
     <!------- Footer ------->
+    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
 </body>
 </html>

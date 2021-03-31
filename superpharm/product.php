@@ -38,10 +38,10 @@ include('auth_session.php'); ?>
                 <br>
                     <p class="b">Brand</p>
                     <?php
-                        $query = mysqli_query($sql, "SELECT product_brand FROM product");
+                        $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 13,17");
                         if(mysqli_num_rows($query) > 0) {
                             while($row = mysqli_fetch_assoc($query)){
-                                echo '<label class="checkbox-container">Brand name
+                                echo '<label class="checkbox-container">'.$row['category_name'].'
                                       <input type="checkbox">
                                       <span class="checkmark"></span>
                                     </label>';

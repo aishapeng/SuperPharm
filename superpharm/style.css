@@ -28,6 +28,14 @@ img.thumbnail {
   height: 200px;
 }
 
+img.user {
+  width: 100%;
+}
+
+img.review {
+  width: 100%;
+}
+
 .full-width {
   width: 100%;
 }
@@ -70,12 +78,20 @@ td.align {
   font-weight: bold;
 }
 
+.text-red {
+  color: #ce0c0c;
+}
+
 .align-left {
   text-align: left !important;
 }
 
 .align-end {
   text-align: end;
+}
+
+.mb-0 {
+  margin-bottom: 0px !important;
 }
 
 .mb-10 {
@@ -90,9 +106,34 @@ td.align {
   margin-top: 50px;
 }
 
+.ml-20 {
+  margin-left: 15px !important;
+}
+
+.mr-20 {
+  margin-right: 20px !important;
+}
+
+.pt-50 {
+  padding-top: 50px !important;
+}
+
 .my-cart-icon {
    width:32px; 
    height: 25px;
+}
+
+.rating-container {
+  padding: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+
+.rating {
+  font-size: 13px !important;
+}
+
+.checked {
+  color: orange;
 }
 
 .logo {
@@ -1188,6 +1229,24 @@ input[type=submit].add {
 
 input[type=submit].remove {
   background: url(icon/bin.svg);
+}
+
+input[type=submit].review {
+  background: url(icon/send.svg);
+}
+
+input[type=submit].image {
+  background: url(icon/img.svg);
+}
+
+input[type=submit].payment1 {
+  background: url(icon/mastercard.svg);
+  margin: 10px;
+}
+
+input[type=submit].payment2 {
+  background: url(icon/paypal.svg);
+  margin: 10px;
 }
 
 .placeorder-container {
