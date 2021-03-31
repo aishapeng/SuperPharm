@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 30, 2021 at 02:56 PM
+-- Generation Time: Mar 31, 2021 at 08:06 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -70,7 +70,9 @@ CREATE TABLE `my_cart` (
 INSERT INTO `my_cart` (`user_id`, `product_id`, `quantity`) VALUES
 (2, 7, 2),
 (10, 4, 2),
-(10, 5, 1);
+(10, 5, 1),
+(14, 4, 3),
+(14, 11, 2);
 
 -- --------------------------------------------------------
 
@@ -182,7 +184,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `address`, `payment_method`, `contact`) VALUES
 (1, 'testing', 123456, 'testing@gmail.com', '123, testing test, testing testing test, 11000 Penang', NULL, 100010123),
 (2, 'newuser', 12345678, 'newuser@hotmail.com', 'testing addressssss', NULL, 123445555),
-(10, 'user3', 1234, 'user3@hotmail.com', NULL, NULL, NULL);
+(10, 'user3', 1234, 'user3@hotmail.com', NULL, NULL, NULL),
+(14, 'user4', 1234, 'user4@gmail.com', NULL, NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -262,7 +265,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- Constraints for dumped tables
