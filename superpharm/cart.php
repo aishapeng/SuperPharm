@@ -15,6 +15,7 @@ include('auth_session.php'); ?>
         <li><a href="" target="_self">Shopping Cart</a></li>
     </ul>
 
+    <!------- Content ------->
 	<?php
 		if (isset($_SESSION['username']) && $_SESSION['username'] == true) {
 		
@@ -62,7 +63,6 @@ include('auth_session.php'); ?>
             $product_id = $row['product_id'];
 
             $shopping_cart = mysqli_query($sql, "SELECT product_img,product_name,ROUND(product_price,2) AS rounded_price,quantity FROM my_cart NATURAL JOIN product WHERE product_id = $product_id");
-
 
 		        while($row = mysqli_fetch_assoc($shopping_cart)){
 		            $product_name = $row['product_name'];
@@ -164,6 +164,7 @@ include('auth_session.php'); ?>
 		} else {
 				echo '<div class="message-container"><h1>Please <a href="account.php">log in</a> first.</h1></div>';
 			} ?>
+	<!------- Content ------->
 
 	<!------- Footer ------->
 	<div id="footer" class="mt-50"></div>

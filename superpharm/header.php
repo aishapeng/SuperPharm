@@ -12,7 +12,6 @@ while($row = mysqli_fetch_assoc($query)){
 			<div class="col-auto me-auto">
 	  			<a href="project.php" target="_self"><img src="icon/logo.png" alt="SuperPharm" class="logo"/></a></div>
 	  		<div class="col-auto">
-	  			<!-- <button class="button">My Account</button>-->
 	  			<?php
 	  			if(!isset($_SESSION["username"])){
 	  			 	echo '<div class="dropdown">
@@ -33,7 +32,6 @@ while($row = mysqli_fetch_assoc($query)){
 	  	</div>
 	</div>
 
-<!------------ Not responvise gor --------------->
 <!------- Navigation Bar ------->
 <div id="mySidebar" class="sidebar">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
@@ -59,9 +57,9 @@ while($row = mysqli_fetch_assoc($query)){
 </div>
 <!------- Navigation Bar ------->
 
-<!-- Go to top button -->
+<!------- Go to top button ------->
 <button onclick="topFunction()" id="goToTopBtn" title="Go to top"><i class='fas fa-chevron-up'></i></button>
-<!-- Go to top button -->
+<!------- Go to top button ------->
 
 <script>
 	window.onscroll = function() {

@@ -13,22 +13,23 @@ include('auth_session.php'); ?>
 
     <?php
         $id = $_GET["catid"];
+
         $categories = mysqli_query($sql, "SELECT * FROM category WHERE category_id = $id");
             while($row = mysqli_fetch_assoc($categories)){
                 $category_name = $row['category_name'];
             } 
     ?>
+    <ul class="breadcrumb">
+        <li><a href="project.php" target="_self">Home</a></li>
+        <li><a href="#"><?php echo $category_name; ?></a></li>
+    </ul>
+
     <!------- Content ------->
-    <div class="row">
-        <ul class="breadcrumb">
-            <li><a href="project.php" target="_self">Home</a></li>
-            <li><a href="#"><?php echo $category_name; ?></a></li>
-        </ul>
-    </div>
-    <div class="container">
+    <div class="container mt-20">
         <div class="row">
-            <div class="filter col-3 c0l-md-3">
-                <h3 class="title">Filter</h3>
+            <!------- Filter ------->
+            <div class="filter col-5 col-md-3">
+                <h4 class="center">Filter</h4>
                 <hr>
                     <p class="b">Price</p>
                     <div class="slidecontainer">
@@ -62,7 +63,7 @@ include('auth_session.php'); ?>
                 <br>
                     <p class="b">Condition</p>
                     <?php
-                        $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 5,13");
+                        $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 5,8");
                         if(mysqli_num_rows($query) > 0) {
                             while($row = mysqli_fetch_assoc($query)){
                                 echo '<label class="checkbox-container">'.$row['category_name'].'
@@ -72,11 +73,36 @@ include('auth_session.php'); ?>
                             }
                     }?>
             </div>
+            <!-------- Filter -------->
 
-            <div class="col-9 col-md-9">
+            <div class="col-7 col-md-9">
                 <div class="container">
                     <div class="row">
                         <h1><?php echo $category_name; ?></h1>
+                    </div>
+                    <div class="sort-container">
+                        <div class="row justify-content-end">
+                            <div class="col-12 col-md-3">
+                                <form action="">
+                                    <select name="sorting" id="sorting">
+                                        <option value="l-h">Price low to high</option>
+                                        <option value="h-l">Price high to low</option>
+                                        <option value="a-z">A to Z</option>
+                                        <option value="z-a">Z to A</option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div class="col-12 col-md-3">
+                                <form action="">
+                                    <select name="sorting" id="sorting">
+                                        <option value="l-h">Show 18 Per Page</option>
+                                        <option value="h-l">Show 36 Per Page</option>
+                                        <option value="a-z">Show 54 Per Page</option>
+                                        <option value="z-a">Show All Per Page</option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="row">

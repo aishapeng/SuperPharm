@@ -11,12 +11,13 @@ include('auth_session.php'); ?>
 	<!------- Header ------->
 
     <?php
-
     $id = $_GET["uid"];
+
     $query = mysqli_query($sql, "SELECT * FROM my_cart WHERE user_id = $id");
     if($query === FALSE) { 
        die(mysqli_error());
     }
+
     $users = mysqli_query($sql, "SELECT user_id,email,address,payment_method,contact FROM user");
         while($row = mysqli_fetch_assoc($users)){
             $email = $row['email'];
@@ -166,6 +167,7 @@ include('auth_session.php'); ?>
             </div>
         </div>  
     </div>
+    <!------- Content ------->
     
     <!------- Footer ------->
 	<div id="footer" class="mt-50"></div>

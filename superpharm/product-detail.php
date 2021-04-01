@@ -9,7 +9,7 @@ include('auth_session.php'); ?>
     <!------- Header ------->
     <div id="header"></div>
     <!------- Header ------->
-
+ 
     <?php
         $id = $_GET["pid"];
 
@@ -55,6 +55,7 @@ include('auth_session.php'); ?>
         <li><a href="" target="_self"><?php echo $product_name; ?></a></li>
     </ul>
 
+    <!------- Content ------->
     <div class="mt-50">
         <div class="container">
             <div class="row">
@@ -304,6 +305,7 @@ include('auth_session.php'); ?>
             </div>
         </div>
     </div>
+    <!------- Content ------->
 
     <!------- Footer ------->
     <div id="footer" class="mt-50"></div>

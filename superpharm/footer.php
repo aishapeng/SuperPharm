@@ -6,14 +6,14 @@
 				<a href="project.php" target="_self"><img src="icon/logo.png" class="footer-logo" alt="SuperPharm"></a></div>
 			<div class="col-12 col-md-3">
 				<p>| Follow Us</p>
-					<div class="row social-media">
-						<div class="col-3 col-md-3">
-							<a href="https://www.facebook.com/" target="_blank"><img src="icon/fb.svg" alt="Facebook" class="social-media-logo"></a></div>
-						<div class="col-3 col-md-3">
-							<a href="https://www.twitter.com/" target="_blank"><img src="icon/twitter.svg" alt="Twitter" class="social-media-logo"></a></div>
-						<div class="col-3 col-md-3">
-							<a href="https://www.linkedin.com/" target="_blank"><img src="icon/linkedin.svg" alt="LinkedIn" class="social-media-logo"></a></div>
-					</div>
+				<div class="row social-media">
+					<div class="col-3 col-md-3">
+						<a href="https://www.facebook.com/" target="_blank"><img src="icon/fb.svg" alt="Facebook" class="social-media-logo"></a></div>
+					<div class="col-3 col-md-3">
+						<a href="https://www.twitter.com/" target="_blank"><img src="icon/twitter.svg" alt="Twitter" class="social-media-logo"></a></div>
+					<div class="col-3 col-md-3">
+						<a href="https://www.linkedin.com/" target="_blank"><img src="icon/linkedin.svg" alt="LinkedIn" class="social-media-logo"></a></div>
+				</div>
 			</div>
 			<div class="col-12 col-md-3">
 				<p>| About Us</p>

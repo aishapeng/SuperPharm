@@ -9,11 +9,13 @@ include('auth_session.php'); ?>
     <!------- Header ------->
     <div id="header"></div>
     <!------- Header ------->
+
     <ul class="breadcrumb">
         <li><a href="project.php" target="_self">Home</a></li>
         <li><a href="" target="_self">My Account</a></li>
     </ul>
 
+    <!------- Content ------->
     <?php 
     if(!isset($_SESSION['username'])) {?>
         <div class="container">
@@ -29,7 +31,6 @@ include('auth_session.php'); ?>
                 <div class="tabBlock-content">
                     <div class="tabBlock-pane">
                         <?php
-
                         if (isset($_POST['username'])) {
                             $username = stripslashes($_REQUEST['username']);
                             $username = mysqli_real_escape_string($sql, $username);
@@ -52,7 +53,6 @@ include('auth_session.php'); ?>
                             }
                         } else {
                     ?>
-
                         <div class="contianer">
                             <div class="row">
                                 <div class="col-12 col-md-6">
@@ -80,7 +80,6 @@ include('auth_session.php'); ?>
                     <div class="tabBlock-pane">
                         <?php
                         if (isset($_REQUEST['username'])) {
-
                             $username = stripslashes($_REQUEST['username']);
                             $username = mysqli_real_escape_string($sql, $username);
                             $email    = stripslashes($_REQUEST['email']);
@@ -103,7 +102,6 @@ include('auth_session.php'); ?>
                             }
                         } else {
                         ?>
-
                         <div class="contianer">
                             <div class="row">
                                 <div class="col-12 col-md-6">
@@ -133,7 +131,7 @@ include('auth_session.php'); ?>
             </figure>
         </div>
     <?php
-    } else {
+    } else { // If have logged in
         $id = $_GET["uid"];
 
         $query = mysqli_query($sql, "SELECT * FROM user WHERE user_id = $id");
@@ -157,7 +155,6 @@ include('auth_session.php'); ?>
             if($contact===NULL){
                 $contact = "---No contact---";
             }
-
         }?>
 
         <div class="account-container">
@@ -182,6 +179,26 @@ include('auth_session.php'); ?>
                     <label for="option2">My Order</label>
                     <article>
                         <h2>Order</h2>
+                            <div class="row mt-20">
+                                <div class="col-4 col-md-2">
+                                    <img src="media_used/product1.jpeg" alt="Product Image" class="review">
+                                </div>
+                                <div class="col-8 col-md-4">
+                                    <p>Product Name</p>
+                                </div>
+                                <div class="col-4 col-md-2">
+                                    <img src="media_used/product6.jpeg" alt="Product Image" class="review">
+                                </div>
+                                <div class="col-8 col-md-4">
+                                    <p>Product Name</p>
+                                </div>
+                                <div class="col-4 col-md-2 mt-20">
+                                    <img src="media_used/product2.jpeg" alt="Product Image" class="review">
+                                </div>
+                                <div class="col-8 col-md-4 mt-20">
+                                    <p>Product Name</p>
+                                </div>
+                            </div>
                     </article>
                 </section>
               
@@ -190,6 +207,14 @@ include('auth_session.php'); ?>
                     <label for="option3">My Wishlist</label>
                     <article>
                         <h2>Wishlist</h2>
+                        <div class="row mt-20">
+                            <div class="col-4 col-md-2">
+                                <img src="media_used/product8.jpeg" alt="Product Image" class="review">
+                            </div>
+                            <div class="col-8 col-md-4">
+                                <p>Product Name</p>
+                            </div>
+                        </div>
                     </article>
                 </section>
               
@@ -233,8 +258,9 @@ include('auth_session.php'); ?>
             </div>
         </div>
     <?php
-    }?>
-
+        } ?>
+    <!------- Content ------->
+    
     <!------- Footer ------->
     <div id="footer" class="mt-50"></div>
     <!------- Footer ------->
