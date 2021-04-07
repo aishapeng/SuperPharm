@@ -3,7 +3,7 @@
 require('include/config.php');
 include('auth_session.php') ?>
 <html lang="en">
-<?php include('head.php'); ?>
+<?php include('head.html'); ?>
 
 <body>
 	<!------- Header ------->

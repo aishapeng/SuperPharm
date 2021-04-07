@@ -5,7 +5,7 @@
 			<div class="col-12 col-md-3">
 				<a href="project.php" target="_self"><img src="icon/logo.png" class="footer-logo" alt="SuperPharm"></a></div>
 			<div class="col-12 col-md-3">
-				<p>| Follow Us</p>
+				<p class="black">| Follow Us</p>
 				<div class="row social-media">
 					<div class="col-3 col-md-3">
 						<a href="https://www.facebook.com/" target="_blank"><img src="icon/fb.svg" alt="Facebook" class="social-media-logo"></a></div>
@@ -16,7 +16,7 @@
 				</div>
 			</div>
 			<div class="col-12 col-md-3">
-				<p>| About Us</p>
+				<p class="black">| About Us</p>
 				<div class="row">
 					<a href="#" target="_self" class="footer-text">Our Service</a></div>
 				<div class="row">
@@ -25,7 +25,7 @@
 					<a href="https://www.google.com.my/maps" target="_self" class="footer-text">Careers</a></div>
 			</div>
 			<div class="col-12 col-md-3">
-				<p>| Contact Us</p>
+				<p class="black">| Contact Us</p>
 				<div class="row">
 					<a href = "mailto: superpharm@service.com" target="_blank" class="footer-text">superpharm@service.com</a></div>
 				<div class="row">

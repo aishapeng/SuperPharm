@@ -48,7 +48,7 @@ while($row = mysqli_fetch_assoc($query)){
 
 <div id="navbar">
 	<a href="project.php" target="_self" class="active">Home</a>
-	<a id="main" class="caregoryBtn" href="javascript:openNav()">☰ Categories</a>
+	<a id="main" class="categoryBtn" href="javascript:openNav()">☰ Categories</a>
 	<form class="search search-bar" action="">
 		<input type="text" placeholder="What are you looking for" name="search">
 		<button type="submit"><i class="fa fa-search"></i></button>
@@ -169,7 +169,14 @@ while($row = mysqli_fetch_assoc($query)){
         }
     };
 
-        $(function() {
-            TabBlock.init();
-        });
+    $(function() {
+        TabBlock.init();
+    });
+
+    function openEditForm() {
+        document.getElementById("popupForm").style.display = "block";
+      }
+  	function closeEditForm() {
+    	document.getElementById("popupForm").style.display = "none";
+  	}
 </script>

@@ -3,7 +3,7 @@
 require('include/config.php');
 include('auth_session.php'); ?>
 <html lang="en">
-<?php include('head.php'); ?>
+<?php include('head.html'); ?>
 
 <body>
 	<!------- Header ------->
@@ -58,7 +58,7 @@ include('auth_session.php'); ?>
 						    </thead>
 						    <tbody>';
 
-        if(mysqli_num_rows($query) > 0) {
+        if(mysqli_num_rows($query) > 0) { //If got item in cart table
         while($row = mysqli_fetch_assoc($query)){
             $product_id = $row['product_id'];
 
@@ -71,6 +71,7 @@ include('auth_session.php'); ?>
 		            $quantity = $row['quantity'];
 		            $subtotal = $product_price*$quantity;
 		        } ?>
+		        	<!------- Show Product List ------->
 		    		<tr>
 			            <td class="width-100">
 			            	<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="thumbnail"/>'; ?>
@@ -103,8 +104,12 @@ include('auth_session.php'); ?>
 		        }?>
 			    	</tbody>
 				</table>
+				<div class="col-12 col-md-6 mb-20">
+					<a href="project.php" class="backBtn"><i class="fa fa-angle-double-left"></i> Continue Shopping</a>
+				</div>
 			</div>
 
+			<!------- Order Summary ------->
 			<div class="col-12 col-md-3">
 				<div class="order-summary">
 					<p class="center b">ORDER SUMMARY</p>
@@ -154,11 +159,6 @@ include('auth_session.php'); ?>
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-6 col-md-4">
-				<a href="project.php" class="backBtn"><i class="fa fa-angle-double-left"></i> Continue Shopping</a>
-			</div>
-		</div>	
 	</div>
 	<?php 
 		} else {

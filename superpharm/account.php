@@ -3,7 +3,7 @@
 require('include/config.php');
 include('auth_session.php'); ?>
 <html lang="en">
-<?php include('head.php'); ?>
+<?php include('head.html'); ?>
 
 <body>
     <!------- Header ------->
@@ -17,7 +17,7 @@ include('auth_session.php'); ?>
 
     <!------- Content ------->
     <?php 
-    if(!isset($_SESSION['username'])) {?>
+    if(!isset($_SESSION['username'])) { //If not logged in?>
         <div class="container">
             <div class="row"><h1 class="center">Login / Sign Up</h1></div>
         </div>
@@ -29,6 +29,7 @@ include('auth_session.php'); ?>
                 </ul>
                 
                 <div class="tabBlock-content">
+                    <!------- Show Login Form Tab ------->
                     <div class="tabBlock-pane">
                         <?php
                         if (isset($_POST['username'])) {
@@ -55,7 +56,7 @@ include('auth_session.php'); ?>
                     ?>
                         <div class="contianer">
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-6 mb-20">
                                     <h1 class="login-title">SIGN IN WITH YOUR USERNAME</h1>
                                     <form class="tab-form" method="post" name="login">
                                         <p>USERNAME</p>
@@ -76,7 +77,7 @@ include('auth_session.php'); ?>
                         }
                     ?>
                     </div>
-
+                    <!------- Show Register Form Tab ------->
                     <div class="tabBlock-pane">
                         <?php
                         if (isset($_REQUEST['username'])) {
@@ -104,7 +105,7 @@ include('auth_session.php'); ?>
                         ?>
                         <div class="contianer">
                             <div class="row">
-                                <div class="col-12 col-md-6">
+                                <div class="col-12 col-md-6 mb-20">
                                     <h1 class="login-title">REGISTER WITH EMAIL</h1>
                                     <form class="tab-form" method="post" action="">
                                         <p>USERNAME</p>
@@ -157,6 +158,7 @@ include('auth_session.php'); ?>
             }
         }?>
 
+        <!------- Show User Account ------->
         <div class="account-container">
             <h1 class="center">ACCOUNT</h1>
             <div class="tabordion">
@@ -180,22 +182,22 @@ include('auth_session.php'); ?>
                     <article>
                         <h2>Order</h2>
                             <div class="row mt-20">
-                                <div class="col-4 col-md-2">
+                                <div class="col-4 col-md-2 mb-20">
                                     <img src="media_used/product1.jpeg" alt="Product Image" class="review">
                                 </div>
-                                <div class="col-8 col-md-4">
+                                <div class="col-8 col-md-4 mb-20">
+                                    <p>Product Name</p>
+                                </div>
+                                <div class="col-4 col-md-2 mb-20">
+                                    <img src="media_used/product6.jpeg" alt="Product Image" class="review">
+                                </div>
+                                <div class="col-8 col-md-4 mb-20">
                                     <p>Product Name</p>
                                 </div>
                                 <div class="col-4 col-md-2">
-                                    <img src="media_used/product6.jpeg" alt="Product Image" class="review">
-                                </div>
-                                <div class="col-8 col-md-4">
-                                    <p>Product Name</p>
-                                </div>
-                                <div class="col-4 col-md-2 mt-20">
                                     <img src="media_used/product2.jpeg" alt="Product Image" class="review">
                                 </div>
-                                <div class="col-8 col-md-4 mt-20">
+                                <div class="col-8 col-md-4">
                                     <p>Product Name</p>
                                 </div>
                             </div>
@@ -245,7 +247,27 @@ include('auth_session.php'); ?>
                             <h2>Account Information</h2>
                         </div>
                         <div class="col-6 col-md-6">
-                            <a href="#" target="_blank" title="Edit your information"><i class="fa fa-pencil-square-o">Edit</i></a>
+                            <a href="javascript:void(0)" class="closebtn" onclick="openEditForm()" target="_self" title="Edit your information"><i class="fa fa-pencil-square-o">Edit</i></a>
+                            <div class="loginPopup">
+                                <div class="formPopup" id="popupForm">
+                                    <form action="" class="formContainer">
+                                      <h2 class="text-center">Edit Your Information</h2>
+                                      <p>Username</p>
+                                      <?php echo '<input type="text" id="username" placeholder="'.$username.'" name="usernmae" disabled>';?>
+                                      <p>E-mail</p>
+                                      <?php echo '<input type="text" id="email" placeholder="'.$email.'" name="email" disabled>';?>
+                                      <p>Password</p>
+                                      <input type="password" id="psw" placeholder="Enter New Password" name="psw" required>
+                                      <input type="password" id="psw" placeholder="Confirm Your New Password" name="psw" required>
+                                      <p>Edit Your Contact</p>
+                                      <?php echo '<input type="text" id="contact" placeholder="'.$contact.'  (current contact)" name="contact">';?>
+                                      <p>Create New Address</p>
+                                      <?php echo '<input type="text" id="address" placeholder="'.$address.'  (current address)" name="address">';?>
+                                      <button type="submit" class="btn" onclick="closeEditForm()">Save Changes</button>
+                                      <button type="button" class="btn cancel" onclick="closeEditForm()">Close</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
                     <p>Username: <?php echo $username; ?></p>
                     <p>Email: <?php echo $email; ?></p>

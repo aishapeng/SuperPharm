@@ -3,7 +3,7 @@
 require('include/config.php');
 include('auth_session.php'); ?>
 <html lang="en">
-<?php include('head.php'); ?>
+<?php include('head.html'); ?>
 
 <body>
 	<!------- Header ------->
@@ -63,7 +63,8 @@ include('auth_session.php'); ?>
     				<div class="col-12 col-md-6">
     					<h4>Shipping Address</h4>
     					<hr>
-                        <p><?php echo $address; ?></p>
+                        <input type="radio" id="add1" name="add" class="mr-10"><label for="add1"><?php echo $address; ?></label><br>
+                        <input type="radio" id="add2" name="add" class="mr-10"><label for="add2" class="color-blue">Create New Address</label>
     				</div>
     				<div class="col-12 col-md-6">
     					<h4>Payment Method</h4>
