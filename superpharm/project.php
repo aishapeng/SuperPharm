@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<?php 
-require('include/config.php');
-include('auth_session.php') ?>
 <html lang="en">
-<?php include('head.html'); ?>
+
+<?php
+require('include/config.php');
+include('auth_session.php');
+include('head.html'); ?>
 
 <body>
 	<!------- Header ------->
@@ -13,6 +14,7 @@ include('auth_session.php') ?>
 	<!------- Content ------->
 	<div class="container">
 		<div class="row">
+			<!----- Ad Images ----->
 			<div class="col-12 col-md-8">
 				<div class="slideshow-container">
 					<div class="adSlides">
@@ -29,39 +31,11 @@ include('auth_session.php') ?>
 				 	<span class="dot" onclick="currentSlide(1)"></span> 
 				 	<span class="dot" onclick="currentSlide(2)"></span> 
 				 	<span class="dot" onclick="currentSlide(3)"></span> 
-				</div>
-
-				<script>
-					var slideIndex = 0;
-					showSlides(slideIndex);
-
-					function plusSlides(n) {
-					  showSlides(slideIndex += n);
-					}
-
-					function currentSlide(n) {
-					  showSlides(slideIndex = n);
-					}
-
-					function showSlides(n) {
-						var i;
-						var slides = document.getElementsByClassName("adSlides");
-						var dots = document.getElementsByClassName("dot");
-						for (i = 0; i < slides.length; i++) {
-						slides[i].style.display = "none";  
-						}
-						slideIndex++;
-						if (slideIndex > slides.length) {slideIndex = 1}    
-						for (i = 0; i < dots.length; i++) {
-						dots[i].className = dots[i].className.replace(" active", "");
-						}
-						slides[slideIndex-1].style.display = "block";  
-						dots[slideIndex-1].className += " active";
-						setTimeout(showSlides, 5000); // Change image every 5 seconds
-					}
-				</script>    
+				</div>  
 	        </div>
-	        <!---------- Login Form ------------>
+	        <!----- Ad Images ----->
+
+	        <!------ Login ------->
 	        <div class="col-12 col-md-4">
 	            <?php
 			    if(!isset($_SESSION["username"])) {
@@ -71,15 +45,14 @@ include('auth_session.php') ?>
 			        $username = mysqli_real_escape_string($sql, $username);
 			        $password = stripslashes($_REQUEST['password']);
 			        $password = mysqli_real_escape_string($sql, $password);
-
 			        $query    = "SELECT * FROM `user` WHERE username='$username'
 			                     AND password='$password'";
 			        $result = mysqli_query($sql, $query) or die(mysql_error());
 			        $rows = mysqli_num_rows($result);
+
 			        if ($rows == 1) {
 			            $_SESSION['username'] = $username;
 			            header("Refresh:0");
-
 			        } else {
 			            echo '<div class="form">
 			                  <h3>Incorrect Username/password.</h3><br/>
@@ -94,7 +67,7 @@ include('auth_session.php') ?>
 				        <input type="password" class="login-input" name="password" placeholder="Password"/>
 				        <input type="submit" value="Login" name="submit" class="login-button"/>
 				        <p class="link" style="text-align: center"><a href="account.php" target="_self">New Registration</a></p>
-				  </form>
+				  	</form>
 				<?php
     				}
     			}
@@ -107,11 +80,11 @@ include('auth_session.php') ?>
     			}
     			?>
 	        </div>
-	        <!---------- Login Form ------------>
+	        <!----- Login Form ----->
 	    </div>
 	</div>
 
-
+	<!----- Category Slider ----->
 	<div class="category">
 		<p class="title">Shop By Category</p>
 		<hr class="separator">
@@ -139,13 +112,13 @@ include('auth_session.php') ?>
 			}?>
 		</div>
 	</div>
-	
+	<!----- Category Slider ----->
 
+	<!----- Product List ----->
 	<div class="category">
 		<a id="our-product"></a>
 		<p class="title">Our Products</p>
 		<hr class="separator">	
-
 		<div class="product-container">
 			<div class="container">
 				<div class="row">
@@ -175,7 +148,8 @@ include('auth_session.php') ?>
 				</div>
 			</div>
 		</div>
-	</div> 
+	</div>
+	<!----- Product List -----> 
 	<!------- Content ------->
 
 	<!------- Footer ------->

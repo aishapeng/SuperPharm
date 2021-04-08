@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <?php
 require('include/config.php');
-include('auth_session.php'); ?>
-<html lang="en">
-<?php include('head.html'); ?>
+include('auth_session.php');
+include('head.html'); ?>
 
 <body>
     <!------- Header ------->
@@ -12,7 +13,6 @@ include('auth_session.php'); ?>
  
     <?php
         $id = $_GET["pid"];
-
         $query = mysqli_query($sql, "SELECT product_img,product_name, product_brand,reward_point,description,specification,ROUND(product_price,2) AS rounded_price,availability FROM product WHERE product_id = $id");
         if($query === FALSE) { 
            die(mysqli_error());
@@ -40,29 +40,32 @@ include('auth_session.php'); ?>
             $cart = "INSERT INTO my_cart (user_id,product_id,quantity)
             VALUES ('$user_id','$product_id','$quantity')";
             if (mysqli_query($sql, $cart)) {
-                echo "New record created successfully !";
+                echo '<script>alert("You have added this product to your cart.")</script>';
             } else {
                 echo "Error: " . $cart . " " . mysqli_error($sql);
              }
              mysqli_close($sql);
-        }
+        } ?>
 
-	?>
-
+    <!----- Breadcrumb ----->
     <ul class="breadcrumb">
         <li><a href="project.php" target="_self">Home</a></li>
         <li><a href="project.php#our-product" target="_self">Our Product</a></li>
         <li><a href="" target="_self"><?php echo $product_name; ?></a></li>
     </ul>
+    <!----- Breadcrumb ----->
 
     <!------- Content ------->
     <div class="mt-50">
         <div class="container">
             <div class="row">
+                <!----- Product Image ----->
                 <div class="col-12 col-md-5">
                     <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'"alt="Product Image" class="product"/>'; ?>
                 </div>
-                
+                <!----- Product Image ----->
+
+                <!----- Product Details ----->
                 <div class="col-12 col-md-7">
                     <div style="padding: 0px 20px">
                         <?php echo '<p class="b">'.$product_name.'</p>'; ?>
@@ -106,7 +109,7 @@ include('auth_session.php'); ?>
                                 }?>
                             </div>
                         </div>
-
+                        <!----- Product Rating ----->
                         <div class="row">
                             <div class="col-12 col-md-12">
                                 <span class="fa fa-star rating checked"></span>
@@ -117,6 +120,7 @@ include('auth_session.php'); ?>
                                 <span> (100 reviews)</span>
                             </div>
                         </div>
+                        <!----- Product Rating ----->
                         <hr>
 
                         <div class="row">
@@ -127,7 +131,7 @@ include('auth_session.php'); ?>
                             </div>
                         </div>
                         <hr>
-
+                        <!----- Add Product to Cart ----->
                         <form method="post" action="">
                             <input type="hidden" name="user_id" value=<?php echo '"'.$user_id.'"'; ?>>
                             <input type="hidden" name="product_id" value=<?php echo '"'.$id.'"'; ?>>
@@ -141,8 +145,13 @@ include('auth_session.php'); ?>
                                     </div>
                                 </div>
                                 <div class="col-4 col-md-2 align-end">
-                                    <?php 
-                                    if($availability==1){ echo '<input type="submit" name="save" value="" class="add">';
+                                    <?php
+                                    if($availability==1){ 
+                                        if(isset($_SESSION["username"])){ 
+                                            echo '<input type="submit" name="save" value="" class="add">';
+                                        } else {  
+                                            echo '<input type="submit" value="" class="add" formaction="account.php">';
+                                        }
                                     }?>
                                 </div>
                                 <div class="col-4 col-md-2">
@@ -150,8 +159,10 @@ include('auth_session.php'); ?>
                                 </div>
                             </div>
                         </form>
+                        <!----- Add Product to Cart ----->
                     </div>
                 </div>
+                <!----- Product Details ----->
             </div>
         </div>
 
@@ -169,7 +180,8 @@ include('auth_session.php'); ?>
                             <!-- Tab 3 -->
                             <input type="radio" name="tabset" id="tab3" aria-controls="reviews">
                             <label for="tab3">Reviews</label>
-                          
+                          	
+                          	<!----- Tab Contents ----->
                             <div class="tab-panels">
                                 <section id="description" class="tab-panel">
                                     <h2>Description</h2>
@@ -195,6 +207,7 @@ include('auth_session.php'); ?>
                                         }?>    
                                     </p>
                                 </section>
+                                <!----- Reviews section ----->
                                 <section id="reviews" class="tab-panel">
                                     <h2>Reviews</h2>
                                     <br>
@@ -298,7 +311,9 @@ include('auth_session.php'); ?>
                                         </div>
                                     </div>
                                 </section>
+                                <!----- Reviews section ----->
                             </div>
+                            <!----- Tab Contents ----->
                         </div>
                     </div>
                 </div>
@@ -310,6 +325,5 @@ include('auth_session.php'); ?>
     <!------- Footer ------->
     <div id="footer" class="mt-50"></div>
     <!------- Footer ------->
-    <script src="https://cdn.metroui.org.ua/v4/js/metro.min.js"></script>
 </body>
 </html>

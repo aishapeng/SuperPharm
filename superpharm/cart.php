@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<?php 
-require('include/config.php');
-include('auth_session.php'); ?>
 <html lang="en">
-<?php include('head.html'); ?>
+
+<?php
+require('include/config.php');
+include('auth_session.php');
+include('head.html'); ?>
 
 <body>
 	<!------- Header ------->
 	<div id="header"></div>
 	<!------- Header ------->
 	
+	<!------- Breadcrumb ------->
     <ul class="breadcrumb">
         <li><a href="project.php" target="_self">Home</a></li>
         <li><a href="" target="_self">Shopping Cart</a></li>
     </ul>
+    <!------- Breadcrumb ------->
 
     <!------- Content ------->
 	<?php
@@ -30,9 +33,8 @@ include('auth_session.php'); ?>
             $user_id = $row['user_id'];
         }
         
-        if(isset($_POST['delete'])){ 
+        if(isset($_POST['delete'])){ // If user clicks remove button
             $product_id = $_POST['product_id'];
-
             $cart = "DELETE FROM my_cart WHERE product_id = $product_id AND user_id = $id";
             if (mysqli_query($sql, $cart)) {
                 header("Refresh:0");
@@ -61,7 +63,6 @@ include('auth_session.php'); ?>
         if(mysqli_num_rows($query) > 0) { //If got item in cart table
         while($row = mysqli_fetch_assoc($query)){
             $product_id = $row['product_id'];
-
             $shopping_cart = mysqli_query($sql, "SELECT product_img,product_name,ROUND(product_price,2) AS rounded_price,quantity FROM my_cart NATURAL JOIN product WHERE product_id = $product_id");
 
 		        while($row = mysqli_fetch_assoc($shopping_cart)){
@@ -71,7 +72,7 @@ include('auth_session.php'); ?>
 		            $quantity = $row['quantity'];
 		            $subtotal = $product_price*$quantity;
 		        } ?>
-		        	<!------- Show Product List ------->
+		        	<!------- Product List In Cart ------->
 		    		<tr>
 			            <td class="width-100">
 			            	<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="thumbnail"/>'; ?>
@@ -97,16 +98,19 @@ include('auth_session.php'); ?>
 	            			</form>
 	            		</td>
 		        	</tr>
+		        	<!------- Product List In Cart ------->
 		        <?php }
-				} else {
+				} else { // If no item in cart
 					echo '<td>There is nothing in your shopping cart. <a href="project.php#our-product" target="_blank">Shop now!</a></td>';
 				
 		        }?>
 			    	</tbody>
 				</table>
+				<!------- Back Button ------->
 				<div class="col-12 col-md-6 mb-20">
 					<a href="project.php" class="backBtn"><i class="fa fa-angle-double-left"></i> Continue Shopping</a>
 				</div>
+				<!------- Back Button ------->
 			</div>
 
 			<!------- Order Summary ------->
@@ -158,10 +162,11 @@ include('auth_session.php'); ?>
 					</div>
 				</div>
 			</div>
+			<!------- Order Summary ------->
 		</div>
 	</div>
 	<?php 
-		} else {
+		} else { // If the user not logged in
 				echo '<div class="message-container"><h1>Please <a href="account.php">log in</a> first.</h1></div>';
 			} ?>
 	<!------- Content ------->

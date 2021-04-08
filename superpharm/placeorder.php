@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<?php 
-require('include/config.php');
-include('auth_session.php'); ?>
 <html lang="en">
-<?php include('head.html'); ?>
+
+<?php
+require('include/config.php');
+include('auth_session.php');
+include('head.html'); ?>
 
 <body>
 	<!------- Header ------->

@@ -11,7 +11,8 @@ while($row = mysqli_fetch_assoc($query)){
 		<div class="row">
 			<div class="col-auto me-auto">
 	  			<a href="project.php" target="_self"><img src="icon/logo.png" alt="SuperPharm" class="logo"/></a></div>
-	  		<div class="col-auto">
+	  		<!----- My Account Dropdown Menu ----->
+            <div class="col-auto">
 	  			<?php
 	  			if(!isset($_SESSION["username"])){
 	  			 	echo '<div class="dropdown">
@@ -27,12 +28,14 @@ while($row = mysqli_fetch_assoc($query)){
 	  					<a href="logout.php">Logout</a>
 	  				</div>';
 	  			}?>
-				</div>
-	  		</div>
+			</div>
+            <!----- My Account Dropdown Menu ----->
 	  	</div>
 	</div>
+</div>
 
-<!------- Navigation Bar ------->
+<!----- Sticky Navigation Bar ----->
+<!----- Category Sidebar ----->
 <div id="mySidebar" class="sidebar">
 	<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
 	<br>
@@ -45,6 +48,7 @@ while($row = mysqli_fetch_assoc($query)){
 		}
 	}?>
 </div>
+<!----- Category Sidebar ----->
 
 <div id="navbar">
 	<a href="project.php" target="_self" class="active">Home</a>
@@ -55,7 +59,7 @@ while($row = mysqli_fetch_assoc($query)){
 	</form>
   	<?php echo '<a href="cart.php?uid='.$user_id.'" target="_blank" class="fl-right"><img src="icon/cart.svg" alt="My Cart" class="my-cart-icon"></a>'; ?>
 </div>
-<!------- Navigation Bar ------->
+<!----- Sticky Navigation Bar ----->
 
 <!------- Go to top button ------->
 <button onclick="topFunction()" id="goToTopBtn" title="Go to top"><i class='fas fa-chevron-up'></i></button>
@@ -87,6 +91,37 @@ while($row = mysqli_fetch_assoc($query)){
 		document.documentElement.scrollTop = 0;
 	}
 
+    ///// Ad Images /////
+    var slideIndex = 0;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("adSlides");
+        var dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 5000); // Change image every 5 seconds
+    }
+    ////////////////////
+
+    ///// Sidebar /////
 	function openNav() {
 	  	document.getElementById("mySidebar").style.width = "200px";
 	  	document.getElementById("main").style.marginLeft = "200px";
@@ -96,30 +131,34 @@ while($row = mysqli_fetch_assoc($query)){
 	  	document.getElementById("mySidebar").style.width = "0";
 	  	document.getElementById("main").style.marginLeft= "0";
 	}
+    ///////////////////
 
+    ///// Quantity Increment /////
 	function wcqib_refresh_quantity_increments() {
         jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
             var c = jQuery(b);
             c.addClass("buttons_added"), c.children().first().before('<input type="button" value="-" class="minus" />'), c.children().last().after('<input type="button" value="+" class="plus" />')
             })
-        }
-        String.prototype.getDecimals || (String.prototype.getDecimals = function() {
-            var a = this,
-                b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
-            return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
-        }), jQuery(document).ready(function() {
-            wcqib_refresh_quantity_increments()
-        }), jQuery(document).on("updated_wc_div", function() {
-            wcqib_refresh_quantity_increments()
-        }), jQuery(document).on("click", ".plus, .minus", function() {
-            var a = jQuery(this).closest(".quantity").find(".qty"),
-                b = parseFloat(a.val()),
-                c = parseFloat(a.attr("max")),
-                d = parseFloat(a.attr("min")),
-                e = a.attr("step");
-            b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
-        });
+    }
+    String.prototype.getDecimals || (String.prototype.getDecimals = function() {
+        var a = this,
+            b = ("" + a).match(/(?:\.(\d+))?(?:[eE]([+-]?\d+))?$/);
+        return b ? Math.max(0, (b[1] ? b[1].length : 0) - (b[2] ? +b[2] : 0)) : 0
+    }), jQuery(document).ready(function() {
+        wcqib_refresh_quantity_increments()
+    }), jQuery(document).on("updated_wc_div", function() {
+        wcqib_refresh_quantity_increments()
+    }), jQuery(document).on("click", ".plus, .minus", function() {
+        var a = jQuery(this).closest(".quantity").find(".qty"),
+            b = parseFloat(a.val()),
+            c = parseFloat(a.attr("max")),
+            d = parseFloat(a.attr("min")),
+            e = a.attr("step");
+        b && "" !== b && "NaN" !== b || (b = 0), "" !== c && "NaN" !== c || (c = ""), "" !== d && "NaN" !== d || (d = 0), "any" !== e && "" !== e && void 0 !== e && "NaN" !== parseFloat(e) || (e = 1), jQuery(this).is(".plus") ? c && b >= c ? a.val(c) : a.val((b + parseFloat(e)).toFixed(e.getDecimals())) : d && b <= d ? a.val(d) : b > 0 && a.val((b - parseFloat(e)).toFixed(e.getDecimals())), a.trigger("change")
+    });
+    //////////////////
 
+    ///// Tab /////
     var TabBlock = {
         s: {
             animLen: 200
@@ -172,11 +211,14 @@ while($row = mysqli_fetch_assoc($query)){
     $(function() {
         TabBlock.init();
     });
+    ///////////////
 
+    ///// Edit Information Form /////
     function openEditForm() {
         document.getElementById("popupForm").style.display = "block";
       }
   	function closeEditForm() {
     	document.getElementById("popupForm").style.display = "none";
   	}
+    ///////////////
 </script>

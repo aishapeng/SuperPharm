@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<?php 
-require('include/config.php');
-include('auth_session.php'); ?>
 <html lang="en">
-<?php include('head.html'); ?>
+
+<?php
+require('include/config.php');
+include('auth_session.php');
+include('head.html'); ?>
 
 <body>
 	<!------- Header ------->
@@ -11,22 +12,21 @@ include('auth_session.php'); ?>
 	<!------- Header ------->
 
     <?php
-    $id = $_GET["uid"];
+        $id = $_GET["uid"];
+        $query = mysqli_query($sql, "SELECT * FROM my_cart WHERE user_id = $id");
+        if($query === FALSE) { 
+           die(mysqli_error());
+        }
 
-    $query = mysqli_query($sql, "SELECT * FROM my_cart WHERE user_id = $id");
-    if($query === FALSE) { 
-       die(mysqli_error());
-    }
+        $users = mysqli_query($sql, "SELECT user_id,email,address,payment_method,contact FROM user");
+            while($row = mysqli_fetch_assoc($users)){
+                $email = $row['email'];
+                $address = $row['address'];
+                $payment_method = $row['payment_method'];
+                $contact = $row['contact']; 
+            } ?>
 
-    $users = mysqli_query($sql, "SELECT user_id,email,address,payment_method,contact FROM user");
-        while($row = mysqli_fetch_assoc($users)){
-            $email = $row['email'];
-            $address = $row['address'];
-            $payment_method = $row['payment_method'];
-            $contact = $row['contact']; 
-        } 
-    ?>
-
+    <!----- Breadcrumb ----->
     <ul class="breadcrumb">
         <li><a href="project.php" target="_self">Home</a></li>
         <li><?php 
@@ -37,6 +37,7 @@ include('auth_session.php'); ?>
         </li>
         <li><a href="" target="_self">Order Confirmation</a></li>
     </ul>
+    <!----- Breadcrumb ----->
 
     <!------- Content -------->
     <div class="container mt-20">
@@ -51,6 +52,7 @@ include('auth_session.php'); ?>
     			<a href="placeorder.php" target="_blank" class="button">Place Order</a>
     		</div>
     	</div>
+        <!----- User Information ----->
     	<div class="row">
     		<div class="container mt-20 confirmation-container">
     			<div class="row">
@@ -75,8 +77,10 @@ include('auth_session.php'); ?>
     			</div>
     		</div>
     	</div>
+        <!----- User Information ----->
     </div>
 
+    <!----- Product List ----->
     <div class="container">
         <div class="row">
             <table class="styled-table">
@@ -94,16 +98,16 @@ include('auth_session.php'); ?>
                     if(mysqli_num_rows($query) > 0) {
                         while($row = mysqli_fetch_assoc($query)){
                             $product_id = $row['product_id'];
-
                             $shopping_cart = mysqli_query($sql, "SELECT product_img,product_name,ROUND(product_price,2) AS rounded_price,quantity FROM my_cart NATURAL JOIN product WHERE product_id = $product_id");
 
-                            while($row = mysqli_fetch_assoc($shopping_cart)){
-                                $product_name = $row['product_name'];
-                                $product_img = $row['product_img'];
-                                $product_price = $row['rounded_price'];
-                                $quantity = $row['quantity'];
-                                $subtotal = $product_price*$quantity;
-                            } ?>
+                                while($row = mysqli_fetch_assoc($shopping_cart)){
+                                    $product_name = $row['product_name'];
+                                    $product_img = $row['product_img'];
+                                    $product_price = $row['rounded_price'];
+                                    $quantity = $row['quantity'];
+                                    $subtotal = $product_price*$quantity;
+                                } ?>
+                            <!----- Product Details ----->
                             <tr>
                                 <td class="width-100">
                                     <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="thumbnail"/>'; ?>
@@ -121,14 +125,16 @@ include('auth_session.php'); ?>
                                     RM <?php echo $subtotal; ?>
                                 </td>
                             </tr>
+                            <!----- Product Details ----->
                     <?php }
-                    } else {
+                    } else { // If nothing in cart
                         echo '<td>There is nothing in your shopping cart. <a href="project.php#our-product" target="_blank">Shop now!</a></td>';
                     
                     }?>
                 </tbody>
             </table>
         </div>
+        <!----- Order Summary ----->
         <div class="row">
             <div class="subtotal-container col-md-4 offset-md-8">
                 <hr>
@@ -159,6 +165,7 @@ include('auth_session.php'); ?>
                 </div>
             </div>
         </div>
+        <!----- Order Summary ----->
         <div class="row mt-20">
             <div class="col-auto me-auto">
                 <a href=<?php echo '"cart.php?uid='.$id.'" target="_self" class="backBtn"';?>><i class="fa fa-angle-double-left"></i> Back to My Cart</a>
@@ -168,6 +175,7 @@ include('auth_session.php'); ?>
             </div>
         </div>  
     </div>
+    <!----- Product List ----->
     <!------- Content ------->
     
     <!------- Footer ------->

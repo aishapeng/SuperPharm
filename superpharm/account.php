@@ -1,23 +1,27 @@
 <!DOCTYPE html>
+<html lang="en">
+
 <?php
 require('include/config.php');
-include('auth_session.php'); ?>
-<html lang="en">
-<?php include('head.html'); ?>
+include('auth_session.php');
+include('head.html'); ?>
 
 <body>
     <!------- Header ------->
     <div id="header"></div>
     <!------- Header ------->
 
+    <!------- Breadcrumb ------->
     <ul class="breadcrumb">
         <li><a href="project.php" target="_self">Home</a></li>
         <li><a href="" target="_self">My Account</a></li>
     </ul>
+    <!------- Breadcrumb ------->
 
     <!------- Content ------->
     <?php 
-    if(!isset($_SESSION['username'])) { //If not logged in?>
+    if(!isset($_SESSION['username'])) { //If not logged in ?>
+        <!----- Display Login/Register Page ----->
         <div class="container">
             <div class="row"><h1 class="center">Login / Sign Up</h1></div>
         </div>
@@ -29,7 +33,7 @@ include('auth_session.php'); ?>
                 </ul>
                 
                 <div class="tabBlock-content">
-                    <!------- Show Login Form Tab ------->
+                    <!------- Login Form Tab ------->
                     <div class="tabBlock-pane">
                         <?php
                         if (isset($_POST['username'])) {
@@ -37,16 +41,16 @@ include('auth_session.php'); ?>
                             $username = mysqli_real_escape_string($sql, $username);
                             $password = stripslashes($_REQUEST['password']);
                             $password = mysqli_real_escape_string($sql, $password);
-                            
                             $query    = "SELECT * FROM `user` WHERE username='$username'
                                          AND password='$password'";
                             $result = mysqli_query($sql, $query) or die(mysql_error());
                             $rows = mysqli_num_rows($result);
                             if ($rows == 1) {
                                 $_SESSION['username'] = $username;
-                                // Redirect to user dashboard page
+                                // If successfully logged in, redirect to homepage
                                 header("Location: project.php");
                             } else {
+                                // If wrong password/username
                                 echo '<div class="form">
                                       <h3>Incorrect Username/password.</h3><br/>
                                       <p style="text-align:center">Click here to <a href="account.php">Login</a> again.</p>
@@ -77,7 +81,9 @@ include('auth_session.php'); ?>
                         }
                     ?>
                     </div>
-                    <!------- Show Register Form Tab ------->
+                    <!------- Login Form Tab ------->
+
+                    <!------- Register Form Tab ------->
                     <div class="tabBlock-pane">
                         <?php
                         if (isset($_REQUEST['username'])) {
@@ -125,14 +131,14 @@ include('auth_session.php'); ?>
                             </div>
                         </div>
                     <?php
-                        }
-                    ?>
+                        } ?>
                     </div>
+                    <!------- Register Form Tab ------->
                 </div>
             </figure>
         </div>
     <?php
-    } else { // If have logged in
+    } else { // If user have logged in
         $id = $_GET["uid"];
 
         $query = mysqli_query($sql, "SELECT * FROM user WHERE user_id = $id");
@@ -158,11 +164,11 @@ include('auth_session.php'); ?>
             }
         }?>
 
-        <!------- Show User Account ------->
+        <!------- User Account Details Page ------->
         <div class="account-container">
             <h1 class="center">ACCOUNT</h1>
             <div class="tabordion">
-                <section id="section1">
+                <section id="my_acc_section">
                     <input type="radio" name="sections" id="option1" checked>
                     <label for="option1">My Account</label>
                     <article>
@@ -176,7 +182,7 @@ include('auth_session.php'); ?>
                     </article>
                 </section>
                 
-                <section id="section2">
+                <section id="my_order_section">
                     <input type="radio" name="sections" id="option2">
                     <label for="option2">My Order</label>
                     <article>
@@ -204,7 +210,7 @@ include('auth_session.php'); ?>
                     </article>
                 </section>
               
-                <section id="section3">
+                <section id="my_wishlist_section">
                     <input type="radio" name="sections" id="option3">
                     <label for="option3">My Wishlist</label>
                     <article>
@@ -220,7 +226,7 @@ include('auth_session.php'); ?>
                     </article>
                 </section>
               
-                <section id="section4">
+                <section id="my_add_section">
                     <input type="radio" name="sections" id="option4">
                     <label for="option4">Address Book</label>
                     <article>
@@ -229,7 +235,7 @@ include('auth_session.php'); ?>
                     </article>
                 </section>
               
-                <section id="section5">
+                <section id="payment_method_section">
                     <input type="radio" name="sections" id="option5">
                     <label for="option5">Payment Method</label>
                     <article>
@@ -238,47 +244,51 @@ include('auth_session.php'); ?>
                     </article>
                 </section>
               
-                <section id="section6">
+                <section id="acc_info_section">
                     <input type="radio" name="sections" id="option6">
                     <label for="option6">Account Information</label>
-                <article>
-                    <div class="row">
-                        <div class="col-6 col-md-6">
-                            <h2>Account Information</h2>
-                        </div>
-                        <div class="col-6 col-md-6">
-                            <a href="javascript:void(0)" class="closebtn" onclick="openEditForm()" target="_self" title="Edit your information"><i class="fa fa-pencil-square-o">Edit</i></a>
-                            <div class="loginPopup">
-                                <div class="formPopup" id="popupForm">
-                                    <form action="" class="formContainer">
-                                      <h2 class="text-center">Edit Your Information</h2>
-                                      <p>Username</p>
-                                      <?php echo '<input type="text" id="username" placeholder="'.$username.'" name="usernmae" disabled>';?>
-                                      <p>E-mail</p>
-                                      <?php echo '<input type="text" id="email" placeholder="'.$email.'" name="email" disabled>';?>
-                                      <p>Password</p>
-                                      <input type="password" id="psw" placeholder="Enter New Password" name="psw" required>
-                                      <input type="password" id="psw" placeholder="Confirm Your New Password" name="psw" required>
-                                      <p>Edit Your Contact</p>
-                                      <?php echo '<input type="text" id="contact" placeholder="'.$contact.'  (current contact)" name="contact">';?>
-                                      <p>Create New Address</p>
-                                      <?php echo '<input type="text" id="address" placeholder="'.$address.'  (current address)" name="address">';?>
-                                      <button type="submit" class="btn" onclick="closeEditForm()">Save Changes</button>
-                                      <button type="button" class="btn cancel" onclick="closeEditForm()">Close</button>
-                                    </form>
-                                </div>
+                    <article>
+                        <div class="row">
+                            <div class="col-6 col-md-6">
+                                <h2>Account Information</h2>
                             </div>
-                        </div>
-                    <p>Username: <?php echo $username; ?></p>
-                    <p>Email: <?php echo $email; ?></p>
-                    <p>Password: ********</p>
-                    <p>Default Address: <?php echo $address; ?></p>
-                    <p>Contact Number: <?php echo $contact; ?></p>
-                    <p>Rewards Earned:</p>
-                </article>
+                            <div class="col-6 col-md-6">
+                                <a href="javascript:void(0)" class="closebtn" onclick="openEditForm()" target="_self" title="Edit your information"><i class="fa fa-pencil-square-o">Edit</i></a>
+
+                                <!----- Edit Information Pop Up Form ----->
+                                <div class="loginPopup">
+                                    <div class="formPopup" id="popupForm">
+                                        <form action="" class="formContainer">
+                                          <h2 class="text-center">Edit Your Information</h2>
+                                          <p>Username</p>
+                                          <?php echo '<input type="text" id="username" placeholder="'.$username.'" name="usernmae" disabled>';?>
+                                          <p>E-mail</p>
+                                          <?php echo '<input type="text" id="email" placeholder="'.$email.'" name="email" disabled>';?>
+                                          <p>Password</p>
+                                          <input type="password" id="psw" placeholder="Enter New Password" name="psw" required>
+                                          <input type="password" id="psw" placeholder="Confirm Your New Password" name="psw" required>
+                                          <p>Edit Your Contact</p>
+                                          <?php echo '<input type="text" id="contact" placeholder="'.$contact.'  (current contact)" name="contact">';?>
+                                          <p>Create New Address</p>
+                                          <?php echo '<input type="text" id="address" placeholder="'.$address.'  (current address)" name="address">';?>
+                                          <button type="submit" class="btn" onclick="closeEditForm()">Save Changes</button>
+                                          <button type="button" class="btn cancel" onclick="closeEditForm()">Close</button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!----- Edit Information Pop Up Form ----->
+                            </div>
+                        <p>Username: <?php echo $username; ?></p>
+                        <p>Email: <?php echo $email; ?></p>
+                        <p>Password: ********</p>
+                        <p>Default Address: <?php echo $address; ?></p>
+                        <p>Contact Number: <?php echo $contact; ?></p>
+                        <p>Rewards Earned:</p>
+                    </article>
                 </section>
             </div>
         </div>
+        <!------- User Account Details Page ------->
     <?php
         } ?>
     <!------- Content ------->
