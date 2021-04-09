@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Mar 31, 2021 at 11:04 AM
+-- Generation Time: Apr 09, 2021 at 08:47 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.16
 
@@ -58,6 +58,27 @@ INSERT INTO `category` (`category_id`, `category_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `my_cart`
+--
+
+CREATE TABLE `my_cart` (
+  `user_id` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `quantity` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `my_cart`
+--
+
+INSERT INTO `my_cart` (`user_id`, `product_id`, `quantity`) VALUES
+(14, 11, 2),
+(14, 9, 1),
+(14, 4, 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -97,6 +118,31 @@ INSERT INTO `product` (`product_id`, `product_name`, `product_brand`, `product_i
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `product_category`
+--
+
+CREATE TABLE `product_category` (
+  `id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `product_category`
+--
+
+INSERT INTO `product_category` (`id`, `category_id`, `product_id`) VALUES
+(1, 1, 4),
+(2, 1, 5),
+(3, 3, 6),
+(4, 5, 6),
+(5, 1, 8),
+(6, 1, 9),
+(7, 4, 9);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -107,7 +153,7 @@ CREATE TABLE `user` (
   `email` varchar(30) NOT NULL,
   `address` varchar(255) DEFAULT NULL,
   `payment_method` varchar(20) DEFAULT NULL,
-  `contact` int(11) DEFAULT NULL
+  `contact` varchar(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -115,10 +161,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `email`, `address`, `payment_method`, `contact`) VALUES
-(1, 'testing', 123456, 'testing@gmail.com', '123, testing test, testing testing test, 11000 Penang', NULL, 100010123),
-(2, 'newuser', 12345678, 'newuser@hotmail.com', 'testing addressssss', NULL, 123445555),
-(10, 'user3', 1234, 'user3@hotmail.com', NULL, NULL, NULL),
-(14, 'user4', 1234, 'user4@gmail.com', '122, Lubuh Mars 51, Penang, Malaysia', NULL, 122223333);
+(14, 'user4', 1234, 'user4@gmail.com', '122, Lubuh Mars 51, Penang, Malaysia', NULL, '122223333');
 
 --
 -- Indexes for dumped tables
@@ -131,10 +174,25 @@ ALTER TABLE `category`
   ADD PRIMARY KEY (`category_id`);
 
 --
+-- Indexes for table `my_cart`
+--
+ALTER TABLE `my_cart`
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `product_id` (`product_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
+
+--
+-- Indexes for table `product_category`
+--
+ALTER TABLE `product_category`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `category_id` (`category_id`),
+  ADD KEY `product_id` (`product_id`);
 
 --
 -- Indexes for table `user`
@@ -160,10 +218,34 @@ ALTER TABLE `product`
   MODIFY `product_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `product_category`
+--
+ALTER TABLE `product_category`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `user_id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `my_cart`
+--
+ALTER TABLE `my_cart`
+  ADD CONSTRAINT `my_cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `my_cart_ibfk_2` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`);
+
+--
+-- Constraints for table `product_category`
+--
+ALTER TABLE `product_category`
+  ADD CONSTRAINT `product_category_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
+  ADD CONSTRAINT `product_category_ibfk_2` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
