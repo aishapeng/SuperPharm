@@ -198,7 +198,7 @@ td.align {
 }
 
 .search-bar {
-   float: left; 
+   float:left; 
    width: 50%;
  }
 
@@ -534,7 +534,7 @@ div.scrollmenu a:hover {
 }
 
 .category {
-  margin: 80px;
+  margin: 40px 80px ;
   text-align: center;
 }
 
@@ -569,6 +569,10 @@ div.scrollmenu a:hover {
   padding: 30px 25px;
   background: #ffd53d;
   border-radius: 10px;
+}
+
+.title{
+  font-size: large;
 }
 
 h1.login-title {
