@@ -31,16 +31,17 @@ include('head.html'); ?>
     <div class="container mt-20">
         <div class="row">
             <!------- Filter ------->
-            <div class="filter col-5 col-md-3">
-                <h4 class="center">Filter</h4>
-                <hr>
-                    <p class="b">Price</p>
+            <div class="col-5 col-md-3">
+                <div class="row filter">
+                    <p class="b black">Price</p>
                     <div class="slidecontainer">
                         <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
                     </div><br>
                     <p class="center">RM xxx</p>
-                <br>
-                    <p class="b">Brand</p>
+                    <br>
+                </div>
+                <div class="row filter">
+                    <p class="b black">Brand</p>
                     <?php
                         $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 13,17");
                         if(mysqli_num_rows($query) > 0) {
@@ -51,8 +52,9 @@ include('head.html'); ?>
                                     </label>';
                             }
                     } ?>
-                <br>
-                    <p class="b">Category</p>
+                </div>
+                <div class="row filter">
+                    <p class="b black">Category</p>
                     <?php
                         $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 0,5");
                         if(mysqli_num_rows($query) > 0) {
@@ -63,8 +65,9 @@ include('head.html'); ?>
                                     </label>';
                             }
                     }?>
-                <br>
-                    <p class="b">Condition</p>
+                </div>
+                <div class="row filter">
+                    <p class="b black">Condition</p>
                     <?php
                         $query = mysqli_query($sql, "SELECT category_name FROM category LIMIT 5,8");
                         if(mysqli_num_rows($query) > 0) {
@@ -75,6 +78,7 @@ include('head.html'); ?>
                                     </label>';
                             }
                     }?>
+                </div>
             </div>
             <!-------- Filter -------->
 
