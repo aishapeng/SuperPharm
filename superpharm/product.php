@@ -31,7 +31,7 @@ include('head.html'); ?>
     <div class="container mt-20">
         <div class="row">
             <!------- Filter ------->
-            <div class="col-5 col-md-3">
+            <div class="col-4 col-md-3">
                 <div class="row filter">
                     <p class="b black">Price</p>
                     <div class="slidecontainer">
@@ -82,7 +82,7 @@ include('head.html'); ?>
             </div>
             <!-------- Filter -------->
 
-            <div class="col-7 col-md-9">
+            <div class="col-8 col-md-9">
                 <div class="container">
                     <div class="row">
                         <h1><?php echo $category_name; ?></h1>
@@ -132,10 +132,10 @@ include('head.html'); ?>
                                             <div class="col-6 col-md-4 mt-20">
                                                 <?php echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/>'; ?></a>
                                                 <div class="row">
-                                                    <div class="col-auto me-auto">
+                                                    <div class="row">
                                                         <?php echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank"  class="product-txt">'.$product_name.'</a>'; ?>
                                                     </div>
-                                                    <div class="col-auto">
+                                                    <div class="row">
                                                         <?php echo '<p>RM '.$product_price.'</p>'; ?>
                                                     </div>
                                                 </div>

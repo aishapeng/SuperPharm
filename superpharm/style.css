@@ -6,6 +6,12 @@ body {
 
 img {
   max-height: 330px;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+img:hover {
+  opacity: 0.5;
 }
 
 img.google {
