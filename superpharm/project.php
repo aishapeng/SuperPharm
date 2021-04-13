@@ -133,9 +133,9 @@ include('head.html'); ?>
 								$product_price = $row['rounded_price'];
 
 								if(!isset($_SESSION["username"])){
-								echo '<div class="col-12 col-md-4 mb-0 pb-50"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';
+								echo '<div class="col-12 col-md-4 mb-0 pb-50"><a href="product-detail.php?pid='.$product_id.'" target="_blank" class="box-shadow"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';
 								echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank" class="align-left">'.$product_name.'</a>';
-								echo '<div class="row"><div class="col-auto me-auto ml-20"><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating"></span><span class="fa fa-star rating"></span></div>';
+								echo '<div class="row mb-50"><div class="col-auto me-auto ml-20"><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating"></span><span class="fa fa-star rating"></span></div>';
 								echo '<div class="col-auto mr-20">RM '.$product_price.'</div></div></div>';
 								} else {
 									echo '<div class="col-12 col-md-4 pb-50"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';

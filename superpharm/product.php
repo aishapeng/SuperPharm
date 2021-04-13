@@ -130,7 +130,7 @@ include('head.html'); ?>
                                         ?>
                                             <!----- Product ----->
                                             <div class="col-6 col-md-4 mt-20">
-                                                <?php echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/>'; ?></a>
+                                                <?php echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width box-shadow"/>'; ?></a>
                                                 <div class="row">
                                                     <div class="row">
                                                         <?php echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank"  class="product-txt">'.$product_name.'</a>'; ?>
