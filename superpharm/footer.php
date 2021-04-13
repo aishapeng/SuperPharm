@@ -25,9 +25,9 @@
 				<div class="row">
 					<a href="#" target="_self" class="footer-text">Our Service</a></div>
 				<div class="row">
-					<a href="#" target="_target" class="footer-text">Store Locator</a></div>
+					<a href="https://www.google.com.my/maps" target="_blank" class="footer-text">Store Locator</a></div>
 				<div class="row">
-					<a href="https://www.google.com.my/maps" target="_self" class="footer-text">Careers</a></div>
+					<a href="#" target="_self" class="footer-text">Careers</a></div>
 			</div>
 			<div class="col-12 col-md-3">
 				<p class="black">| Contact Us</p>

@@ -73,8 +73,10 @@ include('head.html'); ?>
     			}
     			 else {
     				echo '<div class="form">
-			        		<br><br><br><br>
-			               	<h3>You have Successfully Logged In</h3>
+			        		<br>
+			        		<h3>Malaysia Leading Online Pharmacy</h3>
+			        		<br>
+			               	<h4 class="center">You have Successfully Logged In</h4>
 			               	<p class="link center"><a href="logout.php" target="_self">Logout</a></p>
 			  	          </div>';
     			}
@@ -138,9 +140,9 @@ include('head.html'); ?>
 								echo '<div class="row mb-50"><div class="col-auto me-auto ml-20"><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating"></span><span class="fa fa-star rating"></span></div>';
 								echo '<div class="col-auto mr-20">RM '.$product_price.'</div></div></div>';
 								} else {
-									echo '<div class="col-12 col-md-4 pb-50"><a href="product-detail.php?pid='.$product_id.'" target="_blank"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';
+									echo '<div class="col-12 col-md-4 pb-50"><a href="product-detail.php?pid='.$product_id.'" target="_blank" class="box-shadow"><img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="full-width"/></a>';
 									echo '<a href="product-detail.php?pid='.$product_id.'" target="_blank" class="align-left">'.$product_name.'</a>';
-									echo '<div class="row"><div class="col-auto me-auto ml-20"><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating"></span><span class="fa fa-star rating"></span></div>';
+									echo '<div class="row mb-50"><div class="col-auto me-auto ml-20"><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating checked"></span><span class="fa fa-star rating"></span><span class="fa fa-star rating"></span></div>';
 									echo '<div class="col-auto mr-20">RM '.$product_price.'</div></div></div>';
 								}
 							}

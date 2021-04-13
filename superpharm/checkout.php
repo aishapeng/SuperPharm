@@ -71,8 +71,8 @@ include('head.html'); ?>
     				<div class="col-12 col-md-6">
     					<h4>Payment Method</h4>
     					<hr>
-                        <input type="submit" name="payment1" value="" class="payment1">
-                        <input type="submit" name="payment2" value="" class="payment2">
+                        <a href="https://www.mastercardconnect.com/mccpblcui/#/public/signin" target="_blank"><input type="submit" name="payment1" value="" class="payment1" ></a>
+                        <a href="https://www.paypal.com/my/home?kid=p56012245254&gclid=Cj0KCQjwgtWDBhDZARIsADEKwgOr0gRnze6HctR_XEc8JkUUoVYRutnSBf2m02JBLvaPwueEGFpNo6oaAvHiEALw_wcB&gclsrc=aw.ds" target="_blank"><input type="submit" name="payment2" value="" class="payment2"></a>
     				</div>
     			</div>
     		</div>
