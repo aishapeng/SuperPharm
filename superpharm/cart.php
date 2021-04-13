@@ -75,7 +75,7 @@ include('head.html'); ?>
 		        	<!------- Product List In Cart ------->
 		    		<tr>
 			            <td class="width-100">
-			            	<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="thumbnail"/>'; ?>
+			            	<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'"alt="Product Image '.($product_name).'"class="thumbnail"/>'; ?>
 	            		</td>
 			            <td>
 			            	<?php echo $product_name; ?>
@@ -120,10 +120,10 @@ include('head.html'); ?>
 					<hr>
 					<div class="row">
 						<div class="col-6 col-md-6">
-							<p>Items: </p>
+							<p>Items: 2</p>
 						</div>
 						<div class="col-6 col-md-6">
-							<p>RM </p>
+							<p>RM 100</p>
 						</div>
 					</div>
 					<div class="row">
@@ -152,7 +152,7 @@ include('head.html'); ?>
 							<p class="center b">TOTAL</p>
 						</div>
 						<div class="col-6 col-md-6">
-							<p>RM</p>
+							<p>RM 200</p>
 						</div>
 					</div>
 					<div class="row">

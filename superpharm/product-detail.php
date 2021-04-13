@@ -60,13 +60,13 @@ include('head.html'); ?>
         <div class="container">
             <div class="row">
                 <!----- Product Image ----->
-                <div class="col-12 col-md-5">
-                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'"alt="Product Image" class="product"/>'; ?>
+                <div class="col-12 col-md-4 box-shadow">
+                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'"alt="Product Image '.($product_name).'"class="product"/>'; ?>
                 </div>
                 <!----- Product Image ----->
 
                 <!----- Product Details ----->
-                <div class="col-12 col-md-7">
+                <div class="col-12 col-md-8">
                     <div style="padding: 0px 20px">
                         <?php echo '<p class="b">'.$product_name.'</p>'; ?>
                         <hr>

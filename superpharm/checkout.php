@@ -110,7 +110,7 @@ include('head.html'); ?>
                             <!----- Product Details ----->
                             <tr>
                                 <td class="width-100">
-                                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'" alt="Product image" class="thumbnail"/>'; ?>
+                                    <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($product_img).'"alt="Product Image '.($product_name).'"class="thumbnail"/>'; ?>
                                 </td>
                                 <td>
                                     <?php echo $product_name; ?>
