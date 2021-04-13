@@ -46,7 +46,7 @@ include('head.html'); ?>
     			<h1>Order Confirmation</h1>
     		</div>
     		<div class="col-auto">
-    			<h2>Order Total: -</h2>
+    			<h2>Order Total: RM55</h2>
     		</div>
     		<div class="col-auto">
     			<a href="placeorder.php" target="_blank" class="button">Place Order</a>
@@ -89,7 +89,7 @@ include('head.html'); ?>
                         <th>Product</th>
                         <th></th>
                         <th>Quantity</th>
-                        <th>Sipping Fee</th>
+                        <th>Shipping Fee</th>
                         <th>Price</th>
                     </tr>
                 </thead>
@@ -119,7 +119,7 @@ include('head.html'); ?>
                                     <?php echo $quantity; ?>
                                 </td>
                                 <td>
-                                    RM -
+                                    RM 5
                                 </td>
                                 <td>
                                     RM <?php echo $subtotal; ?>
@@ -143,7 +143,7 @@ include('head.html'); ?>
                         <h5>Subtotal</h5>
                     </div>
                     <div class="col-4 col-md-4">
-                        <h5>RM -</h5>
+                        <h5>RM 50</h5>
                     </div>
                 </div>
                 <div class="row">
@@ -151,7 +151,7 @@ include('head.html'); ?>
                         <h5>Total Shipping Fee</h5>
                     </div>
                     <div class="col-4 col-md-4">
-                        <h5>RM -</h5>
+                        <h5>RM 5</h5>
                     </div>
                 </div>
                 <hr>
@@ -160,7 +160,7 @@ include('head.html'); ?>
                         <h4>Order Total</h4>
                     </div>
                     <div class="col-4 col-md-4">
-                        <h4>RM -</h4>
+                        <h4>RM55</h4>
                     </div>
                 </div>
             </div>

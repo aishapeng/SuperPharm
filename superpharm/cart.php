@@ -123,7 +123,7 @@ include('head.html'); ?>
 							<p>Items: 2</p>
 						</div>
 						<div class="col-6 col-md-6">
-							<p>RM 100</p>
+							<p>RM 50</p>
 						</div>
 					</div>
 					<div class="row">
@@ -152,7 +152,7 @@ include('head.html'); ?>
 							<p class="center b">TOTAL</p>
 						</div>
 						<div class="col-6 col-md-6">
-							<p>RM 200</p>
+							<p>RM 50</p>
 						</div>
 					</div>
 					<div class="row">
