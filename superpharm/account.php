@@ -73,7 +73,7 @@ include('head.html'); ?>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h1 class="login-title">SIGN IN WITH SOCIAL MEDIA ACCOUNTS</h1>
-                                    <button class="btn"><img src="icon/google.svg" alt="Google Login" class="google" />SIGN IN WITH GOOGLE</a>
+                                    <button class="btn" onclick="location.href ='https://myaccount.google.com/?utm_source=sign_in_no_continue&pli=1'"><img src="icon/google.svg" alt="Google Login" class="google" />SIGN IN WITH GOOGLE</a>
                                 </div>
                             </div>
                         </div>
@@ -126,7 +126,7 @@ include('head.html'); ?>
                                 </div>
                                 <div class="col-12 col-md-6">
                                     <h1 class="login-title">SIGN UP WITH SOCIAL MEDIA ACCOUNTS</h1>
-                                    <button class="btn"><img src="icon/google.svg" alt="Google SignUp" class="google" />SIGN UP WITH GOOGLE</a>
+                                    <button class="btn" onclick="location.href ='https://myaccount.google.com/?utm_source=sign_in_no_continue&pli=1'"><img src="icon/google.svg" alt="Google SignUp" class="google" />SIGN UP WITH GOOGLE</a>
                                 </div>
                             </div>
                         </div>
