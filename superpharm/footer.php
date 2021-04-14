@@ -41,13 +41,12 @@
 			<!----- About Superpharm ----->
 		</div>
 		<div class="row">
-			<p class="copyright">&copy; SuperPharm Copyright 2099. All Rights Reserved.</p></div>
+			<p class="copyright">&copy; SuperPharm Copyright 2099. All Rights Reserved. <a href="http://jigsaw.w3.org/css-validator/validator?uri=http%3A%2F%2Flocalhost%2F" target="_blank"><img style="border:0; width:88px; height:31px" src="http://jigsaw.w3.org/css-validator/images/vcss" alt="Valid CSS!" /></a></p>
+		</div>
 	</div>
 </div>
-
     <script>
         
-
     ///// Quantity Increment /////
     function wcqib_refresh_quantity_increments() {
         jQuery("div.quantity:not(.buttons_added), td.quantity:not(.buttons_added)").each(function(a, b) {
